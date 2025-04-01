@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
-import { useSignup } from '../context/SignupContext'
+import { useSignup } from '../contexts/SignupContext'
 import { Input } from '../Components/Input'
 import doctor from '../assets/doctor.jpg'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SignupProvider } from '../context/SignupContext'
+import { SignupProvider } from '../contexts/SignupContext'
 import { Routes,Route } from 'react-router'
 import SignupStep1 from '../routes/SignupStep1'
 import SignupStep2 from '../routes/SignupStep2'

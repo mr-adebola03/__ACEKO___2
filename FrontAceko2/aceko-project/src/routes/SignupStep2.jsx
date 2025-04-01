@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useSignup } from '../context/SignupContext';
+import { useSignup } from '../contexts/SignupContext';
 import photodoc2 from '../assets/photodoc2.png';
 import Selecte from '../Components/Selecte';
 import { Input } from '../Components/Input';
