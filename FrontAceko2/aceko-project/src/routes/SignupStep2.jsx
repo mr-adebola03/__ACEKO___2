@@ -88,7 +88,7 @@ const SignupStep2 = () => {
           </div>
           
           <form onSubmit={handleSubmit}>
-            <div className="row row-cols-lg-2">
+            <div className="row row-cols-lg">
               <div className="col">
                     <ProfessionSelect 
                     profession={formData.agents_sante} 
@@ -104,33 +104,35 @@ const SignupStep2 = () => {
                     />
               </div>
             </div>
-            {showSpecialiteMedi && (
-              <div className="col">
-                <SpecialiteMediInput 
-                  specialiteMedi={formData.specialitemedi} 
-                  onSpecialiteMediChange={handleChange('specialitemedi')}
-                  options={specialiteMediOptions}
-                />
-              </div>
-            )}
-
-            {showSpecialiteLabo && (
-              <div className="col">
-                <SpecialiteLaboInput 
-                  specialiteLabo={formData.specialitelabo} 
-                  onSpecialiteLaboChange={handleChange('specialitelabo')}
-                  options={specialiteLaboOptions}
-                />
-              </div>
-            )}
-            <div className="mb-4">
-                <PhotoProfilInput 
-                    onPhotoProfilChange={handleFileChange('photo_profil')}
-                />
-            </div>
-
             
-            <div className="mb-4">
+            <div className="row">
+              <div className="mb-2 col">
+                  <PhotoProfilInput 
+                      onPhotoProfilChange={handleFileChange('photo_profil')}
+                  />
+              </div>
+              {showSpecialiteMedi && (
+                <div className="col">
+                  <SpecialiteMediInput 
+                    specialiteMedi={formData.specialitemedi} 
+                    onSpecialiteMediChange={handleChange('specialitemedi')}
+                    options={specialiteMediOptions}
+                  />
+                </div>
+              )}
+
+              {showSpecialiteLabo && (
+                <div className="col">
+                  <SpecialiteLaboInput 
+                    specialiteLabo={formData.specialitelabo} 
+                    onSpecialiteLaboChange={handleChange('specialitelabo')}
+                    options={specialiteLaboOptions}
+                  />
+                </div>
+              )}
+            </div>
+            
+            <div className="mb-2">
               <DateNaissanceInput 
                 dateNaissance={formData.date_naissance} 
                 onDateNaissanceChange={handleChange('date_naissance')}
@@ -143,7 +145,7 @@ const SignupStep2 = () => {
                 />
             </div>
             <div className="w-full">
-              <button type="submit" className='btn btn-primary w-full p-2 text-bold text-xl'>
+              <button type="submit" className='btn btn-primary w-full p-2 mt-4 text-bold text-xl'>
                 Finaliser l'inscription
               </button>
             </div>
@@ -156,7 +158,7 @@ const SignupStep2 = () => {
 
 function ProfessionSelect({ profession, onProfessionChange, options }) {
   return (
-    <div className='mb-4'>
+    <div className='mb-2'>
       <Selecte
         label="Profession"
         value={profession}
@@ -170,7 +172,7 @@ function ProfessionSelect({ profession, onProfessionChange, options }) {
 
 function SpecialtySelect({ civilite, onciviliteChange, options }) {
   return (
-    <div className='mb-4'>
+    <div className='mb-2'>
       <Selecte
         label="Civilité"
         value={civilite}
@@ -183,7 +185,7 @@ function SpecialtySelect({ civilite, onciviliteChange, options }) {
 
 function LicenseInput({ license, onLicenseChange }) {
   return (
-    <div className='mb-4'>
+    <div className='mb-2'>
       <Input 
         type="text"
         label="Numéro de licence" 
@@ -198,7 +200,7 @@ function LicenseInput({ license, onLicenseChange }) {
 
 function PhotoProfilInput({ onPhotoProfilChange }) {
     return (
-      <div className='mb-4'>
+      <div className='mb-2'>
             <label className="form-label">Photo de profil</label>
             <input 
                 type="file" 
@@ -212,7 +214,7 @@ function PhotoProfilInput({ onPhotoProfilChange }) {
   
 function DateNaissanceInput({ dateNaissance, onDateNaissanceChange }) {
     return (
-        <div className="mb-4">
+        <div className="mb-2">
             <label htmlFor="dateNaissance" className="form-label">Date de naissance</label>
             <div className="input-group">
                 <span className="input-group-text">
@@ -236,7 +238,7 @@ function DateNaissanceInput({ dateNaissance, onDateNaissanceChange }) {
 
 function SpecialiteLaboInput({ specialiteLabo, onSpecialiteLaboChange, options }) {
     return (
-      <div className='mb-4'>
+      <div className='mb-2'>
         <Selecte
           label="Spécialité laboratoire"
           value={specialiteLabo}
@@ -249,7 +251,7 @@ function SpecialiteLaboInput({ specialiteLabo, onSpecialiteLaboChange, options }
 
 function SpecialiteMediInput({ specialiteMedi, onSpecialiteMediChange, options }) {
     return (
-      <div className='mb-4'>
+      <div className='mb-2'>
         <Selecte
           label="Spécialité médicale"
           value={specialiteMedi}
