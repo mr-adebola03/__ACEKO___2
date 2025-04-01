@@ -18,11 +18,11 @@ const SignupStep1 = () => {
   //   setFormData(prev => ({ ...prev, [field]: value }));
   // };
 
-  const handleChange = (field) => (e) => {
+  const handleChange = (field) => (value) => {
     // console.log(`Champ ${field} modifié :`, e.target.value);
     setFormData({
       ...formData,
-      [field]: e.target.value
+      [field]: value
     });
   };
 
@@ -94,7 +94,7 @@ function FirstNameInput({firstName,onFirstNameChange}){
 
 function EmailInput({email,onEmailChange}){
   return <div className='mb-4'>
-    <Input label="Email" icon={<i class="fa-regular fa-envelope"></i>} placeholder="johnDoe@gmail.com" value={email} onChange={onEmailChange}/>
+    <Input type='email' label="Email" icon={<i class="fa-regular fa-envelope"></i>} placeholder="johnDoe@gmail.com" value={email} onChange={onEmailChange}/>
   </div>
 }
 
