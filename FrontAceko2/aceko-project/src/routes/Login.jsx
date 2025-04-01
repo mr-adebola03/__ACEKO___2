@@ -16,8 +16,15 @@ const Login = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleChange = (field) => (e) => {
-    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+  // const handleChange = (field) => (e) => {
+  //   const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+  //   setFormData(prev => ({
+  //     ...prev,
+  //     [field]: value
+  //   }));
+  // };
+
+  const handleChange = (field) => (value) => {
     setFormData(prev => ({
       ...prev,
       [field]: value

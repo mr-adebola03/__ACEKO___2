@@ -7,6 +7,7 @@ import Login from './routes/Login'
 import About from './routes/About'
 import AuthRoutes from './Authentification/AuthRoutes'
 import Dash from './routes/dash/dash'
+import ForgotPassword from './routes/ForgotPassword'
 
 function App() {
   const location = useLocation(); 
@@ -21,6 +22,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/about' element={<About/>} />
           <Route path='/dash' element={<Dash/>} />
+          <Route path='/forgot-password' element={<ForgotPassword/>}  />
         </Routes>
         <AuthRoutes/>
       </div>

@@ -20,4 +20,10 @@ export const SignupProvider = ({ children }) => {
     )
 }
 
-export const useSignup = () => useContext(SignupContext);
+export const useSignup = () => {
+  const context =  useContext(SignupContext)
+  if(!context){
+    throw new Error('useSignup must be used within a SignupProvider')
+  }
+  return context
+}

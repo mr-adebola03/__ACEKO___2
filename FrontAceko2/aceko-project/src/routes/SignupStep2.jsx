@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useSignup } from '../contexts/SignupContext';
+import { useSignup } from '../context/SignupContext';
 import photodoc2 from '../assets/photodoc2.png';
 import Selecte from '../Components/Selecte';
 import { Input } from '../Components/Input';
 
 const SignupStep2 = () => {
   const navigate = useNavigate();
-  const { step1Data, updateStep1Data } = useSignup();
+  const { step1Data, resetData } = useSignup();
   
   const [formData, setFormData] = useState({
     agents_sante: '',
@@ -19,18 +19,33 @@ const SignupStep2 = () => {
     specialitelabo: '',
   });
 
-  const handleChange = (field) => (e) => {
+  const handleChange = (field) => (value) => {
     setFormData({
       ...formData,
-      [field]: e.target.value
+      [field]: value
+    });
+  };
+
+  const handleFileChange = (field) => (e) => {
+    setFormData({
+      ...formData,
+      [field]: e.target.files[0]
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Données complètes:', { ...step1Data, ...formData });
+
+    console.log('Données étape 1:', step1Data);
+
+    console.log('Données étape 2:', formData);
+
+    const finalData = { ...step1Data, ...formData };
+    console.log('Données complètes:', finalData);
     // Envoyer les données au serveur ici
-    // navigate('/dashboard'); // Redirection après inscription
+
+    resetData();
+    // navigate('/'); 
   };
 
   const professions = [
@@ -64,9 +79,7 @@ const SignupStep2 = () => {
         <img src={photodoc2} alt="Medical professional" className='h-full w-full object-cover'/>
       </div>
       
-      <div className='text-black h-screen w-1/2 bg-blue-200 p-10 flex flex-col justify-around items-start'>
-        <div className='text-xl font-extrabold text-blue-400'>ACEKO Care</div>
-        
+      <div className='text-black h-screen w-1/2 bg-blue-200 p-10 flex flex-col justify-around items-center'>
         <div>
           <div className='mb-5'>
             <h3 className='text-lg font-bold mb-2'>Presque terminé !</h3>
@@ -84,9 +97,9 @@ const SignupStep2 = () => {
               </div>
               <div className="col">
                     <SpecialtySelect 
-                    civilite={formData.civilite} 
-                    onciviliteChange={handleChange('civilite')}
-                    options={civilite}
+                        civilite={formData.civilite} 
+                        onciviliteChange={handleChange('civilite')}
+                        options={civilite}
                     />
               </div>
             </div>
@@ -111,7 +124,7 @@ const SignupStep2 = () => {
             )}
             <div className="mb-4">
                 <PhotoProfilInput 
-                    onPhotoProfilChange={handleChange('photoProfil')}
+                    onPhotoProfilChange={handleFileChange('photo_profil')}
                 />
             </div>
 
@@ -123,10 +136,10 @@ const SignupStep2 = () => {
               />
             </div>
             <div className="col">
-              <LicenseInput 
-                license={formData.numero_licence_medicale} 
-                onLicenseChange={handleChange('numero_licence_medicale')}
-              />
+                <LicenseInput 
+                    license={formData.numero_licence_medicale} 
+                    onLicenseChange={(value) => handleChange('numero_licence_medicale')(value)}
+                />
             </div>
             <div className="w-full">
               <button type="submit" className='btn btn-primary w-full p-2 text-bold text-xl'>
@@ -158,7 +171,7 @@ function SpecialtySelect({ civilite, onciviliteChange, options }) {
   return (
     <div className='mb-4'>
       <Selecte
-        label="Spécialité"
+        label="Civilité"
         value={civilite}
         onChange={onciviliteChange}
         options={options}
@@ -171,11 +184,12 @@ function LicenseInput({ license, onLicenseChange }) {
   return (
     <div className='mb-4'>
       <Input 
+        type="text"
         label="Numéro de licence" 
         placeholder="123456789" 
         value={license} 
         onChange={onLicenseChange}
-        required
+        
       />
     </div>
   );
@@ -186,10 +200,10 @@ function PhotoProfilInput({ onPhotoProfilChange }) {
       <div className='mb-4'>
             <label className="form-label">Photo de profil</label>
             <input 
-            type="file" 
-            accept="image/*"
-            onChange={onPhotoProfilChange}
-            className="form-control"
+                type="file" 
+                accept="image/*"
+                onChange={onPhotoProfilChange}
+                className="form-control"
             />
       </div>
     )
@@ -206,9 +220,13 @@ function DateNaissanceInput({ dateNaissance, onDateNaissanceChange }) {
                 <input
                     id="dateNaissance"
                     type="date"
-                    value={dateNaissance}
-                    onChange={onDateNaissanceChange}
+                    value={dateNaissance || ''}
+                    onChange={(e) => {
+                        const selectedDate = e.target.value;
+                        onDateNaissanceChange(selectedDate);
+                    }}
                     className="form-control py-[10px]"
+                    max={new Date().toISOString().split('T')[0]} 
                 />
             </div>
         </div>
@@ -240,32 +258,6 @@ function SpecialiteMediInput({ specialiteMedi, onSpecialiteMediChange, options }
       </div>
     );
 }
-
-// function InstitutionInput({ institution, onInstitutionChange }) {
-//   return (
-//     <div className='mb-4'>
-//       <Input 
-//         label="Établissement" 
-//         placeholder="Nom de l'hôpital ou clinique" 
-//         value={institution} 
-//         onChange={onInstitutionChange}
-//       />
-//     </div>
-//   );
-// }
-
-// function AddressInput({ address, onAddressChange }) {
-//   return (
-//     <div className='mb-4'>
-//       <Input 
-//         label="Adresse professionnelle" 
-//         placeholder="123 Rue de la Santé, Ville" 
-//         value={address} 
-//         onChange={onAddressChange}
-//       />
-//     </div>
-//   );
-// }
 
 
 
