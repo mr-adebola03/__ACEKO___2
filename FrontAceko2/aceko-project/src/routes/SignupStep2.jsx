@@ -1,92 +1,272 @@
-import React, { useState } from 'react'
-import PhotoDoc2 from '../assets/photodoc2.png'
-import { Input } from '../Components/Input'
-import { Link } from 'react-router-dom'
-import CheckBox from '../Components/CheckBox'
-import Selecte from '../Components/Selecte'
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useSignup } from '../context/SignupContext';
+import photodoc2 from '../assets/photodoc2.png';
+import Selecte from '../Components/Selecte';
+import { Input } from '../Components/Input';
 
 const SignupStep2 = () => {
+  const navigate = useNavigate();
+  const { step1Data, updateStep1Data } = useSignup();
+  
+  const [formData, setFormData] = useState({
+    agents_sante: '',
+    civilite: '',
+    numero_licence_medicale: '',
+    photo_profil: '',
+    date_naissance: '',
+    specialitemedi: '',
+    specialitelabo: '',
+  });
 
-    const [formData, setFormData] = useState({
-        agent: '',
+  const handleChange = (field) => (e) => {
+    setFormData({
+      ...formData,
+      [field]: e.target.value
     });
-    
-    const handleChange = (field) => (value) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-    };
+  };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Données du formulaire:', formData);
-    };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Données complètes:', { ...step1Data, ...formData });
+    // Envoyer les données au serveur ici
+    // navigate('/dashboard'); // Redirection après inscription
+  };
 
-    const agentOptions = [
-        { value: 'doctor', label: 'Docteur' },
-        { value: 'infirmier', label: 'Infirmier' },
-        { value: 'laborantin', label: 'Laborantin' }
-    ];
+  const professions = [
+    { value: 'doctor', label: 'Médecin' },
+    { value: 'laborantin', label: 'Technicien de laboratoire' }
+  ];
+
+  const civilite = [
+    { value: 'M', label: 'Monsieur' },
+    { value: 'Mme', label: 'Madame' },
+  ];
+
+  const specialiteMediOptions = [
+    { value: 'cardiologie', label: 'Cardiologie' },
+    { value: 'pediatrie', label: 'Pédiatrie' },
+    { value: 'dermatologie', label: 'Dermatologie' }
+  ];
+
+  const specialiteLaboOptions = [
+    { value: 'biologie', label: 'Biologie médicale' },
+    { value: 'hematologie', label: 'Hématologie' },
+    { value: 'microbiologie', label: 'Microbiologie' }
+  ];
+
+  const showSpecialiteMedi = formData.agents_sante === 'doctor';
+  const showSpecialiteLabo = formData.agents_sante === 'laborantin';
 
   return (
-    <div className='h-screen bg-slate-50 w-full flex  justify-between'>
-      <div className='w-2/3 h-full bg-slate-200 flex flex-col justify-between px-14 py-10 '>
-            <h1 className='text-2xl font-bold text-slate-700'>ACEKO CARE</h1>
-            <div className='flex flex-col'>
-            <div className="mb-4">
-                <h3 className='mb-2 text-3xl font-semibold text-black text-uppercase'>Welcome 👋</h3>
-                <p>Let us know more about yourself </p>
-            </div>
-            <form action="">
-            <div className="mb-3">
-              <AgentInput agent={formData.agent} onAgentChange={handleChange('agent')} options={agentOptions}/>
-            </div>
-                <div className="w-full px-4">
-                    <button className='btn btn-primary py-[10px] w-full'>Login</button>
-                </div>
-            </form>
-            </div>
-            <div>
-            <p className='text-lg font-semibold mr-1 text-center'>Don't have an account ? <Link to="/signup" className='text-sm text-grey-500 '>Sign up</Link></p>
-            </div>
+    <div className='flex justify-between bg-slate-50 min-h-screen w-screen'>
+      <div className='h-screen w-1/2'>
+        <img src={photodoc2} alt="Medical professional" className='h-full w-full object-cover'/>
       </div>
-      <div className='relative w-1/3 flex flex-col h-full '>
-        <img src={PhotoDoc2} alt="Photo Docteur" className='h-full w-full object-cover' />
+      
+      <div className='text-black h-screen w-1/2 bg-blue-200 p-10 flex flex-col justify-around items-start'>
+        <div className='text-xl font-extrabold text-blue-400'>ACEKO Care</div>
+        
+        <div>
+          <div className='mb-5'>
+            <h3 className='text-lg font-bold mb-2'>Presque terminé !</h3>
+            <p>Complétez vos informations professionnelles</p>
+          </div>
+          
+          <form onSubmit={handleSubmit}>
+            <div className="row row-cols-lg-2">
+              <div className="col">
+                    <ProfessionSelect 
+                    profession={formData.agents_sante} 
+                    onProfessionChange={handleChange('agents_sante')}
+                    options={professions}
+                    />
+              </div>
+              <div className="col">
+                    <SpecialtySelect 
+                    civilite={formData.civilite} 
+                    onciviliteChange={handleChange('civilite')}
+                    options={civilite}
+                    />
+              </div>
+            </div>
+            {showSpecialiteMedi && (
+              <div className="col">
+                <SpecialiteMediInput 
+                  specialiteMedi={formData.specialitemedi} 
+                  onSpecialiteMediChange={handleChange('specialitemedi')}
+                  options={specialiteMediOptions}
+                />
+              </div>
+            )}
+
+            {showSpecialiteLabo && (
+              <div className="col">
+                <SpecialiteLaboInput 
+                  specialiteLabo={formData.specialitelabo} 
+                  onSpecialiteLaboChange={handleChange('specialitelabo')}
+                  options={specialiteLaboOptions}
+                />
+              </div>
+            )}
+            <div className="mb-4">
+                <PhotoProfilInput 
+                    onPhotoProfilChange={handleChange('photoProfil')}
+                />
+            </div>
+
+            
+            <div className="mb-4">
+              <DateNaissanceInput 
+                dateNaissance={formData.date_naissance} 
+                onDateNaissanceChange={handleChange('date_naissance')}
+              />
+            </div>
+            <div className="col">
+              <LicenseInput 
+                license={formData.numero_licence_medicale} 
+                onLicenseChange={handleChange('numero_licence_medicale')}
+              />
+            </div>
+            <div className="w-full">
+              <button type="submit" className='btn btn-primary w-full p-2 text-bold text-xl'>
+                Finaliser l'inscription
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-function AgentInput({ agent, onAgentChange, options }) {
-    return (
+function ProfessionSelect({ profession, onProfessionChange, options }) {
+  return (
+    <div className='mb-4'>
       <Selecte
-        label="Type Agents"
-        value={agent}
-        name="agents_sante"
-        onChange={onAgentChange}
+        label="Profession"
+        value={profession}
+        onChange={onProfessionChange}
         options={options}
         required
       />
-    );
+    </div>
+  );
 }
 
-function CiviliteInput({ civilite, onCiviliteChange, options }) {
-    return (
+function SpecialtySelect({ civilite, onciviliteChange, options }) {
+  return (
+    <div className='mb-4'>
       <Selecte
-        label="Civilité"
+        label="Spécialité"
         value={civilite}
-        name="civilite"
-        onChange={onCiviliteChange}
+        onChange={onciviliteChange}
         options={options}
+      />
+    </div>
+  );
+}
+
+function LicenseInput({ license, onLicenseChange }) {
+  return (
+    <div className='mb-4'>
+      <Input 
+        label="Numéro de licence" 
+        placeholder="123456789" 
+        value={license} 
+        onChange={onLicenseChange}
         required
       />
-    );
-  }
+    </div>
+  );
+}
 
-// function PasswordInput({password,onPasswordChange}){
-//   return <div className='mb-3'>
-//     <Input label="Password" icon={<i class="fa-regular fa-envelope"></i>} placeholder="*****" value={password} onChange={onPasswordChange}/>
-//   </div>
+function PhotoProfilInput({ onPhotoProfilChange }) {
+    return (
+      <div className='mb-4'>
+            <label className="form-label">Photo de profil</label>
+            <input 
+            type="file" 
+            accept="image/*"
+            onChange={onPhotoProfilChange}
+            className="form-control"
+            />
+      </div>
+    )
+}
+  
+function DateNaissanceInput({ dateNaissance, onDateNaissanceChange }) {
+    return (
+        <div className="mb-4">
+            <label htmlFor="dateNaissance" className="form-label">Date de naissance</label>
+            <div className="input-group">
+                <span className="input-group-text">
+                    <i className="fa-regular fa-calendar"></i>
+                </span>
+                <input
+                    id="dateNaissance"
+                    type="date"
+                    value={dateNaissance}
+                    onChange={onDateNaissanceChange}
+                    className="form-control py-[10px]"
+                />
+            </div>
+        </div>
+    )
+}
+
+function SpecialiteLaboInput({ specialiteLabo, onSpecialiteLaboChange, options }) {
+    return (
+      <div className='mb-4'>
+        <Selecte
+          label="Spécialité laboratoire"
+          value={specialiteLabo}
+          onChange={onSpecialiteLaboChange}
+          options={options}
+        />
+      </div>
+    );
+}
+
+function SpecialiteMediInput({ specialiteMedi, onSpecialiteMediChange, options }) {
+    return (
+      <div className='mb-4'>
+        <Selecte
+          label="Spécialité médicale"
+          value={specialiteMedi}
+          onChange={onSpecialiteMediChange}
+          options={options}
+        />
+      </div>
+    );
+}
+
+// function InstitutionInput({ institution, onInstitutionChange }) {
+//   return (
+//     <div className='mb-4'>
+//       <Input 
+//         label="Établissement" 
+//         placeholder="Nom de l'hôpital ou clinique" 
+//         value={institution} 
+//         onChange={onInstitutionChange}
+//       />
+//     </div>
+//   );
+// }
+
+// function AddressInput({ address, onAddressChange }) {
+//   return (
+//     <div className='mb-4'>
+//       <Input 
+//         label="Adresse professionnelle" 
+//         placeholder="123 Rue de la Santé, Ville" 
+//         value={address} 
+//         onChange={onAddressChange}
+//       />
+//     </div>
+//   );
 // }
 
 
-export default SignupStep2
+
+export default SignupStep2;

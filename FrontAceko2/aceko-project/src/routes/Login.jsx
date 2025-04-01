@@ -1,14 +1,61 @@
 import React, { useState } from 'react'
 import PhotoDoc from '../assets/photodoc.jpg'
 import { Input } from '../Components/Input'
-import { Link } from 'react-router-dom'
+import { useNavigate,Link } from 'react-router-dom'
 import CheckBox from '../Components/CheckBox'
 
 
 const Login = () => {
-  const [emailValue,setEmail] = useState('')
-  const [passwordValue,setPassword] = useState('')
-  const [rememberValue,setRemember] = useState(false)
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    remember: false
+  });
+
+  const handleChange = (field) => (e) => {
+    const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+    setFormData({
+      ...formData,
+      [field]: value
+    });
+  };
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      console.log('Mes données de connexion :',formData)
+      // 1. Envoi des données à l'API
+      // const response = await axios.post('http://localhost:8000/api/auth/login', {
+      //   email: formData.email,
+      //   password: formData.password
+      // });
+
+      // 2. Stockage du token (exemple avec localStorage)
+      const { token, user } = response.data;
+      localStorage.setItem('authToken', token);
+      
+      // 3. Si "Remember me" est coché, stocker dans un cookie sécurisé
+      if (formData.remember) {
+        document.cookie = `refreshToken=${token}; path=/; max-age=${30 * 24 * 60 * 60}; Secure; SameSite=Strict`;
+      }
+
+      // 4. Redirection vers le dashboard
+      navigate('/dashboard');
+
+    } catch (err) {
+      setError(err.response?.data?.message || 'Erreur de connexion');
+    } finally {
+      setLoading(false);
+    }
+  }
+
 
   return (
     <div className='h-screen bg-slate-50 w-full flex  justify-between'>
@@ -22,17 +69,17 @@ const Login = () => {
             <h3 className='mb-2 text-3xl font-semibold text-black text-uppercase'>Login</h3>
             <p>Welcome Back! Please enter your details </p>
           </div>
-          <form action="">
+          <form action="" onSubmit={handleSubmit}>
             <div className="col">
               <div className="row">
-                <EmailInput email={emailValue} onEmailChange={setEmail}/>
+                <EmailInput email={formData.email} onEmailChange={handleChange('email')}/>
               </div>
               <div className="row">
-                <PasswordInput password={passwordValue} onPasswordChange={setPassword}/>
+                <PasswordInput password={formData.password} onPasswordChange={handleChange('password')}/>
               </div>
             </div>
             <div className="flex justify-between px-2 mb-3">
-              <CheckInput checked={rememberValue} onCheckedChange={setRemember}/>
+              <CheckInput checked={formData.remember} onCheckedChange={handleChange('remember')}/>
               <div>
                 Reset Password 
               </div>
