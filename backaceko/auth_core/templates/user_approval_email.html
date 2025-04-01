@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Votre compte a été approuvé</title>
+</head>
+<body>
+    <h2>Bonjour {{ user.username }},</h2>
+    
+    <p>Votre compte a été approuvé par l'administrateur. Vous pouvez maintenant vous connecter au système.</p>
+    
+    <p>Voici vos informations de connexion :</p>
+    <ul>
+        <li>Email: {{ user.email }}</li>
+        <li>Mot de passe temporaire: <strong>{{ password }}</strong></li>
+    </ul>
+    
+    <p><strong>Important :</strong> Vous devrez changer ce mot de passe temporaire lors de votre première connexion.</p>
+    
+    <p>Cliquez <a href="{{ login_url }}">ici</a> pour vous connecter.</p>
+    
+    <p>Cordialement,<br>L'équipe d'administration</p>
+</body>
+</html>

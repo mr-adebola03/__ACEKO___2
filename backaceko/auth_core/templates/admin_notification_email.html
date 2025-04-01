@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nouvelle demande d'inscription</title>
+</head>
+<body>
+    <h2>Nouvelle demande d'inscription</h2>
+    <p>Un nouvel utilisateur a soumis une demande d'inscription :</p>
+    
+    <ul>
+        <li>Nom d'utilisateur: {{ user.username }}</li>
+        <li>Email: {{ user.email }}</li>
+        <li>Type d'agent de santé: {{ user.get_agents_sante_display }}</li>
+        <li>Numéro de licence médicale: {{ user.numero_licence_medicale }}</li>
+    </ul>
+    
+    <p>Veuillez approuver ou rejeter cette demande dans l'interface d'administration.</p>
+</body>
+</html>

@@ -1,0 +1,220 @@
+{
+        "specialites_medicales": [
+          {
+            "nom": "Addictologie",
+            "description": "Traitement des addictions."
+          },
+          {
+            "nom": "Alcoologie",
+            "description": "Spécialisée dans les troubles liés à l'alcool."
+          },
+          {
+            "nom": "Algologie",
+            "description": "Étude et traitement de la douleur."
+          },
+          {
+            "nom": "Allergologie",
+            "description": "Diagnostic et traitement des allergies."
+          },
+          {
+            "nom": "Anatomie et cytologie pathologiques",
+            "description": "Étude des tissus et cellules pour diagnostiquer des maladies."
+          },
+          {
+            "nom": "Andrologie",
+            "description": "Médecine de l'appareil génital masculin."
+          },
+          {
+            "nom": "Anesthésiologie-réanimation chirurgicale",
+            "description": "Gestion de l'anesthésie et réanimation en chirurgie."
+          },
+          {
+            "nom": "Angiologie",
+            "description": "Étude des maladies des vaisseaux sanguins et lymphatiques."
+          },
+          {
+            "nom": "Biochimie",
+            "description": "Analyse des substances chimiques dans le corps."
+          },
+          {
+            "nom": "Biologie médicale et physiologie",
+            "description": "Étude des fonctions biologiques et analyses médicales."
+          },
+          {
+            "nom": "Cardiologie",
+            "description": "Médecine des maladies du cœur et des vaisseaux."
+          },
+          {
+            "nom": "Chirurgie digestive",
+            "description": "Chirurgie du système digestif."
+          },
+          {
+            "nom": "Chirurgie infantile",
+            "description": "Chirurgie chez l'enfant."
+          },
+          {
+            "nom": "Chirurgie maxillo-faciale et stomatologie",
+            "description": "Chirurgie de la face, de la bouche et des mâchoires."
+          },
+          {
+            "nom": "Chirurgie orthopédique et traumatologique",
+            "description": "Chirurgie des os, articulations et traumatismes."
+          },
+          {
+            "nom": "Chirurgie plastique, reconstructrice et esthétique",
+            "description": "Réparation et embellissement des tissus corporels."
+          },
+          {
+            "nom": "Chirurgie thoracique et cardio-vasculaire",
+            "description": "Chirurgie du thorax, cœur et vaisseaux."
+          },
+          {
+            "nom": "Chirurgie urologique",
+            "description": "Chirurgie de l'appareil urinaire et reproducteur masculin."
+          },
+          {
+            "nom": "Chirurgie vasculaire",
+            "description": "Chirurgie des vaisseaux sanguins."
+          },
+          {
+            "nom": "Chirurgie viscérale",
+            "description": "Chirurgie des organes internes."
+          },
+          {
+            "nom": "Contactologie",
+            "description": "Adaptation des lentilles de contact."
+          },
+          {
+            "nom": "Coronarographie",
+            "description": "Examen des artères coronaires."
+          },
+          {
+            "nom": "Dermatologie",
+            "description": "Médecine des maladies de la peau."
+          },
+          {
+            "nom": "Endocrinologie",
+            "description": "Étude des glandes endocrines et hormones."
+          },
+          {
+            "nom": "Gastro-entérologie",
+            "description": "Médecine du système digestif."
+          },
+          {
+            "nom": "Gériatrie",
+            "description": "Médecine des personnes âgées."
+          },
+          {
+            "nom": "Gynécologie",
+            "description": "Médecine de l'appareil reproducteur féminin."
+          },
+          {
+            "nom": "Hématologie",
+            "description": "Étude des maladies du sang."
+          },
+          {
+            "nom": "Hépatologie",
+            "description": "Médecine des maladies du foie."
+          },
+          {
+            "nom": "Infectiologie",
+            "description": "Étude des maladies infectieuses."
+          },
+          {
+            "nom": "Médecine générale",
+            "description": "Soins médicaux généraux."
+          },
+          {
+            "nom": "Médecine interne",
+            "description": "Diagnostic et traitement des maladies complexes."
+          },
+          {
+            "nom": "Médecine nucléaire",
+            "description": "Utilisation de substances radioactives à des fins diagnostiques et thérapeutiques."
+          },
+          {
+            "nom": "Néphrologie",
+            "description": "Médecine des maladies rénales."
+          },
+          {
+            "nom": "Neurologie",
+            "description": "Étude des maladies du système nerveux."
+          },
+          {
+            "nom": "Oncologie",
+            "description": "Étude et traitement des cancers."
+          },
+          {
+            "nom": "Ophtalmologie",
+            "description": "Médecine des maladies des yeux."
+          },
+          {
+            "nom": "Oto-rhino-laryngologie (ORL)",
+            "description": "Médecine des maladies des oreilles, du nez et de la gorge."
+          },
+          {
+            "nom": "Pédiatrie",
+            "description": "Médecine des enfants."
+          },
+          {
+            "nom": "Pneumologie",
+            "description": "Médecine des maladies pulmonaires."
+          },
+          {
+            "nom": "Psychiatrie",
+            "description": "Étude et traitement des maladies mentales."
+          },
+          {
+            "nom": "Radiologie",
+            "description": "Imagerie médicale pour diagnostic et traitement."
+          },
+          {
+            "nom": "Rhumatologie",
+            "description": "Médecine des maladies des articulations et des os."
+          },
+          {
+            "nom": "Urologie",
+            "description": "Médecine des voies urinaires et du système reproducteur masculin."
+          },
+          {
+            "nom": "Génétique médicale",
+            "description": "Diagnostic et conseil pour les maladies génétiques."
+          },
+          {
+            "nom": "Médecine du sport",
+            "description": "Prévention et traitement des blessures liées au sport."
+          },
+          {
+            "nom": "Médecine d'urgence",
+            "description": "Prise en charge des urgences médicales."
+          },
+          {
+            "nom": "Médecine légale",
+            "description": "Application des connaissances médicales aux questions juridiques."
+          },
+          {
+            "nom": "Médecine physique et de réadaptation",
+            "description": "Rééducation fonctionnelle après maladie ou traumatisme."
+          },
+          {
+            "nom": "Neurochirurgie",
+            "description": "Chirurgie du système nerveux central et périphérique."
+          },
+          {
+            "nom": "Pédopsychiatrie",
+            "description": "Psychiatrie spécialisée pour les enfants et adolescents."
+          },
+          {
+            "nom": "Pharmacologie clinique",
+            "description": "Étude des effets des médicaments sur l'être humain."
+          },
+          {
+            "nom": "Santé publique",
+            "description": "Prévention des maladies et promotion de la santé au niveau populationnel."
+          },
+          {
+            "nom": "Toxicologie",
+            "description": "Étude des effets des substances toxiques sur l'organisme."
+          }
+        ]
+      }

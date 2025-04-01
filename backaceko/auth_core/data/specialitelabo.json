@@ -1,0 +1,132 @@
+{
+        "specialites_laboratoire": [
+          {
+            "nom": "Biochimie clinique",
+            "description": "Analyse des composants chimiques dans les fluides biologiques."
+          },
+          {
+            "nom": "Hématologie",
+            "description": "Étude du sang et de ses composants (globules, plaquettes, etc.)."
+          },
+          {
+            "nom": "Microbiologie médicale",
+            "description": "Identification des micro-organismes pathogènes (bactéries, virus, champignons)."
+          },
+          {
+            "nom": "Parasitologie-mycologie",
+            "description": "Détection des parasites et champignons pathogènes."
+          },
+          {
+            "nom": "Immunologie",
+            "description": "Analyse des réponses immunitaires et des anticorps."
+          },
+          {
+            "nom": "Biologie moléculaire",
+            "description": "Techniques d'ADN/ARN pour diagnostics génétiques et infectieux."
+          },
+          {
+            "nom": "Cytogénétique",
+            "description": "Analyse des chromosomes et anomalies génétiques."
+          },
+          {
+            "nom": "Histopathologie",
+            "description": "Examen microscopique des tissus biologiques."
+          },
+          {
+            "nom": "Cytologie",
+            "description": "Analyse des cellules isolées (frottis, ponctions, etc.)."
+          },
+          {
+            "nom": "Toxicologie",
+            "description": "Détection des substances toxiques et médicaments dans l'organisme."
+          },
+          {
+            "nom": "Hormonologie",
+            "description": "Dosage des hormones et marqueurs endocriniens."
+          },
+          {
+            "nom": "Virologie",
+            "description": "Identification et caractérisation des virus."
+          },
+          {
+            "nom": "Bactériologie",
+            "description": "Culture et identification des bactéries pathogènes."
+          },
+          {
+            "nom": "Hémostase",
+            "description": "Étude de la coagulation sanguine."
+          },
+          {
+            "nom": "Transfusion sanguine",
+            "description": "Compatibilité sanguine et gestion des produits sanguins."
+          },
+          {
+            "nom": "Biologie de la reproduction",
+            "description": "Analyses liées à la fertilité et PMA."
+          },
+          {
+            "nom": "Oncobiologie",
+            "description": "Marqueurs tumoraux et diagnostics cancéreux."
+          },
+          {
+            "nom": "Allergologie biologique",
+            "description": "Dosage des IgE spécifiques et tests allergiques."
+          },
+          {
+            "nom": "Génétique médicale",
+            "description": "Diagnostics des maladies génétiques."
+          },
+          {
+            "nom": "Pharmacogénétique",
+            "description": "Analyse des variations génétiques affectant la réponse aux médicaments."
+          },
+          {
+            "nom": "Biologie du développement",
+            "description": "Étude des mécanismes du développement embryonnaire."
+          },
+          {
+            "nom": "Néphrologie biologique",
+            "description": "Analyses spécialisées pour les maladies rénales."
+          },
+          {
+            "nom": "Neurobiologie",
+            "description": "Marqueurs biologiques des maladies neurologiques."
+          },
+          {
+            "nom": "Biologie nutritionnelle",
+            "description": "Bilans nutritionnels et métaboliques."
+          },
+          {
+                "nom": "Radiologie diagnostique",
+                "description": "Imagerie par rayons X (radiographie, scanner)."
+                },
+                {
+                "nom": "IRM",
+                "description": "Imagerie par Résonance Magnétique."
+                },
+                {
+                "nom": "Échographie",
+                "description": "Imagerie par ultrasons."
+                },
+                {
+                "nom": "Médecine nucléaire",
+                "description": "Imagerie fonctionnelle (scintigraphie, PET scan)."
+                },
+                {
+                "nom": "Angiographie",
+                "description": "Imagerie des vaisseaux sanguins."
+                },
+                {
+                "nom": "Mammographie",
+                "description": "Imagerie spécialisée des seins."
+                },
+                {
+                "nom": "Ostéodensitométrie",
+                "description": "Mesure de la densité osseuse."
+                },
+                {
+                "nom": "Radiologie interventionnelle",
+                "description": "Procédures guidées par imagerie."
+                }
+        ]
+      }
