@@ -8,6 +8,7 @@ import About from './routes/About'
 import AuthRoutes from './Authentification/AuthRoutes'
 import Dash from './routes/dash/dash'
 import ForgotPassword from './routes/ForgotPassword'
+import RegistrationSuccess from './routes/RegistrationSuccess';
 
 function App() {
   const location = useLocation(); 
@@ -23,6 +24,7 @@ function App() {
           <Route path='/about' element={<About/>} />
           <Route path='/dash' element={<Dash/>} />
           <Route path='/forgot-password' element={<ForgotPassword/>}  />
+          <Route path="/registration-success" element={<RegistrationSuccess />} />
         </Routes>
         <AuthRoutes/>
       </div>

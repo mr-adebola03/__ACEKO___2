@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router'
 import { useSignup } from '../contexts/SignupContext'
 import { Input } from '../Components/Input'
 import doctor from '../assets/doctor.jpg'
+import axios from 'axios'
 
 const SignupStep1 = () => {
 
@@ -12,25 +13,69 @@ const SignupStep1 = () => {
     lastname:'',
     firstname:'',
     email: '',
-    phone: '',
+    phone_number: '',
   });
+
+  const api = axios.create({
+    baseURL: 'http://localhost:8000/auth/register/',
+  });
+
+  const checkEmailExists = async (email) => {
+    try {
+      const response = await api.get(`/auth/check-email/?email=${email}`);
+      return response.data.exists;
+    } catch (error) {
+      console.error('Erreur vérification email:', error);
+      return false;
+    }
+  };
+
+  const [errors, setErrors] = useState({});
   // const handleChange = (field) => (value) => {
   //   setFormData(prev => ({ ...prev, [field]: value }));
   // };
 
   const handleChange = (field) => (value) => {
-    // console.log(`Champ ${field} modifié :`, e.target.value);
     setFormData({
       ...formData,
       [field]: value
     });
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: '' }));
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.lastname) newErrors.lastname = 'Le nom est requis';
+    if (!formData.firstname) newErrors.firstname = 'Le prénom est requis';
+    if (!formData.email) {
+      newErrors.email = 'L\'email est requis';
+    } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
+      newErrors.email = 'Email invalide';
+    }
+    // if (!formData.phone_number) newErrors.phone_number = 'Le téléphone est requis';
+    // setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Données du formulaire:', formData);
-    updateStep1Data(formData); 
-    navigate('/signup-step2'); 
+    
+    if (!validateForm()) return;
+
+    try {
+      const emailExists = await checkEmailExists(formData.email);
+      if (emailExists) {
+        setErrors(prev => ({ ...prev, email: 'Cet email est déjà utilisé' }));
+        return;
+      }
+
+      updateStep1Data(formData); 
+      navigate('/signup-step2');
+    } catch (error) {
+      console.error('Error checking email:', error);
+    }
   };
 
   // React.useEffect(() => {
@@ -53,18 +98,18 @@ const SignupStep1 = () => {
           <form action="" onSubmit={handleSubmit}>
             <div className="row row-cols-lg-2 ">
               <div className="col">
-                <LastNameInput lastName={formData.lastname} onLastNameChange={handleChange('lastname')}/>
+                <LastNameInput lastName={formData.lastname} onLastNameChange={handleChange('lastname')} error={errors.lastname}/>
               </div>
               <div className="col">
-                <FirstNameInput firstName={formData.firstname} onFirstNameChange={handleChange('firstname')} />
+                <FirstNameInput firstName={formData.firstname} onFirstNameChange={handleChange('firstname')} error={errors.firstNamename} />
               </div>
             </div>
             <div className="col">
               <div className="row">
-                <EmailInput email={formData.email} onEmailChange={handleChange('email')} />
+                <EmailInput email={formData.email} onEmailChange={handleChange('email')} error={errors.email} />
               </div>
               <div className="row">
-                <PhoneInput phone={formData.phone} onPhoneChange={handleChange('phone')} />
+                <PhoneInput phone={formData.phone_number} onPhoneChange={handleChange('phone_number')} error={errors.phone_number}/>
               </div>
             </div>
             <div className="w-full">
@@ -80,27 +125,32 @@ const SignupStep1 = () => {
   )
 }
 
-function LastNameInput({lastName,onLastNameChange}){
+function LastNameInput({lastName,onLastNameChange,error}){
   return <div className='mb-4'>
     <Input label="Last name" icon={<i class="fa-regular fa-user"></i>} placeholder="Doe" value={lastName} onChange={onLastNameChange}/>
+    {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
   </div>
 }
 
-function FirstNameInput({firstName,onFirstNameChange}){
+function FirstNameInput({firstName,onFirstNameChange,error}){
   return <div className="mb-4">
-    <Input label="First name" icon={<i class="fa-regular fa-user"></i>} placeholder="John" value={firstName} onChange={onFirstNameChange}/>
+    <Input label="First name" icon={<i class="fa-regular fa-user"></i>} placeholder="John" value={firstName} onChange={onFirstNameChange} 
+    /> 
+    {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
   </div>
 }
 
-function EmailInput({email,onEmailChange}){
+function EmailInput({email,onEmailChange,error}){
   return <div className='mb-4'>
     <Input type='email' label="Email" icon={<i class="fa-regular fa-envelope"></i>} placeholder="johnDoe@gmail.com" value={email} onChange={onEmailChange}/>
+    {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
   </div>
 }
 
-function PhoneInput({phone,onPhoneChange}){
+function PhoneInput({phone_number,onPhoneChange,error}){
   return <div className="mb-4">
-    <Input label="Phone Number" icon={<i class="fa-solid fa-phone"></i>} placeholder="+22960438453" value={phone} onChange={onPhoneChange} />
+    <Input label="Phone Number" icon={<i class="fa-solid fa-phone"></i>} placeholder="0160438453" value={phone_number} onChange={onPhoneChange} />
+    {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
   </div>
 }
 

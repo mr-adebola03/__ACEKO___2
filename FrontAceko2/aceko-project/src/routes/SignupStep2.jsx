@@ -1,6 +1,274 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router';
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router';
 
+// import photodoc2 from '../assets/photodoc2.png';
+// import Selecte from '../Components/Selecte';
+// import { Input } from '../Components/Input';
+// import { useSignup } from '../contexts/SignupContext';
+
+// const SignupStep2 = () => {
+//   const navigate = useNavigate();
+//   const { step1Data, resetData } = useSignup()
+  
+//   const [formData, setFormData] = useState({
+//     agents_sante: '',
+//     civilite: '',
+//     numero_licence_medicale: '',
+//     photo_profil: '',
+//     date_naissance: '',
+//     specialitemedi: '',
+//     specialitelabo: '',
+//   });
+
+//   const handleChange = (field) => (value) => {
+//     setFormData({
+//       ...formData,
+//       [field]: value
+//     });
+//   };
+
+//   const handleFileChange = (field) => (e) => {
+//     setFormData({
+//       ...formData,
+//       [field]: e.target.files[0]
+//     });
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+
+//     console.log('Données étape 1:', step1Data);
+
+//     console.log('Données étape 2:', formData);
+
+//     const finalData = { ...step1Data, ...formData };
+//     console.log('Données complètes:', finalData);
+//     // Envoyer les données au serveur ici
+
+//     resetData();
+//     // navigate('/'); 
+//   };
+
+//   const professions = [
+//     { value: 'doctor', label: 'Médecin' },
+//     { value: 'laborantin', label: 'Technicien de laboratoire' }
+//   ];
+
+//   const civilite = [
+//     { value: 'M', label: 'Monsieur' },
+//     { value: 'Mme', label: 'Madame' },
+//   ];
+
+//   const specialiteMediOptions = [
+//     { value: 'cardiologie', label: 'Cardiologie' },
+//     { value: 'pediatrie', label: 'Pédiatrie' },
+//     { value: 'dermatologie', label: 'Dermatologie' }
+//   ];
+
+//   const specialiteLaboOptions = [
+//     { value: 'biologie', label: 'Biologie médicale' },
+//     { value: 'hematologie', label: 'Hématologie' },
+//     { value: 'microbiologie', label: 'Microbiologie' }
+//   ];
+
+//   const showSpecialiteMedi = formData.agents_sante === 'doctor';
+//   const showSpecialiteLabo = formData.agents_sante === 'laborantin';
+
+//   return (
+//     <div className='flex justify-between bg-slate-50 min-h-screen w-screen'>
+//       <div className='h-screen w-1/2'>
+//         <img src={photodoc2} alt="Medical professional" className='h-full w-full object-cover'/>
+//       </div>
+      
+//       <div className='text-black h-screen w-1/2 bg-blue-200 p-10 flex flex-col justify-around items-center'>
+//         <div>
+//           <div className='mb-5'>
+//             <h3 className='text-lg font-bold mb-2'>Presque terminé !</h3>
+//             <p>Complétez vos informations professionnelles</p>
+//           </div>
+          
+//           <form onSubmit={handleSubmit}>
+//             <div className="row row-cols-lg">
+//               <div className="col">
+//                     <ProfessionSelect 
+//                     profession={formData.agents_sante} 
+//                     onProfessionChange={handleChange('agents_sante')}
+//                     options={professions}
+//                     />
+//               </div>
+//               <div className="col">
+//                     <SpecialtySelect 
+//                         civilite={formData.civilite} 
+//                         onciviliteChange={handleChange('civilite')}
+//                         options={civilite}
+//                     />
+//               </div>
+//             </div>
+            
+//             <div className="row">
+//               <div className="mb-2 col">
+//                   <PhotoProfilInput 
+//                       onPhotoProfilChange={handleFileChange('photo_profil')}
+//                   />
+//               </div>
+//               {showSpecialiteMedi && (
+//                 <div className="col">
+//                   <SpecialiteMediInput 
+//                     specialiteMedi={formData.specialitemedi} 
+//                     onSpecialiteMediChange={handleChange('specialitemedi')}
+//                     options={specialiteMediOptions}
+//                   />
+//                 </div>
+//               )}
+
+//               {showSpecialiteLabo && (
+//                 <div className="col">
+//                   <SpecialiteLaboInput 
+//                     specialiteLabo={formData.specialitelabo} 
+//                     onSpecialiteLaboChange={handleChange('specialitelabo')}
+//                     options={specialiteLaboOptions}
+//                   />
+//                 </div>
+//               )}
+//             </div>
+            
+//             <div className="mb-2">
+//               <DateNaissanceInput 
+//                 dateNaissance={formData.date_naissance} 
+//                 onDateNaissanceChange={handleChange('date_naissance')}
+//               />
+//             </div>
+//             <div className="col">
+//                 <LicenseInput 
+//                     license={formData.numero_licence_medicale} 
+//                     onLicenseChange={(value) => handleChange('numero_licence_medicale')(value)}
+//                 />
+//             </div>
+//             <div className="w-full">
+//               <button type="submit" className='btn btn-primary w-full p-2 mt-4 text-bold text-xl'>
+//                 Finaliser l'inscription
+//               </button>
+//             </div>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// function ProfessionSelect({ profession, onProfessionChange, options }) {
+//   return (
+//     <div className='mb-2'>
+//       <Selecte
+//         label="Profession"
+//         value={profession}
+//         onChange={onProfessionChange}
+//         options={options}
+//         required
+//       />
+//     </div>
+//   );
+// }
+
+// function SpecialtySelect({ civilite, onciviliteChange, options }) {
+//   return (
+//     <div className='mb-2'>
+//       <Selecte
+//         label="Civilité"
+//         value={civilite}
+//         onChange={onciviliteChange}
+//         options={options}
+//       />
+//     </div>
+//   );
+// }
+
+// function LicenseInput({ license, onLicenseChange }) {
+//   return (
+//     <div className='mb-2'>
+//       <Input 
+//         type="text"
+//         label="Numéro de licence" 
+//         placeholder="123456789" 
+//         value={license} 
+//         onChange={onLicenseChange}
+        
+//       />
+//     </div>
+//   );
+// }
+
+// function PhotoProfilInput({ onPhotoProfilChange }) {
+//     return (
+//       <div className='mb-2'>
+//             <label className="form-label">Photo de profil</label>
+//             <input 
+//                 type="file" 
+//                 accept="image/*"
+//                 onChange={onPhotoProfilChange}
+//                 className="form-control"
+//             />
+//       </div>
+//     )
+// }
+  
+// function DateNaissanceInput({ dateNaissance, onDateNaissanceChange }) {
+//     return (
+//         <div className="mb-2">
+//             <label htmlFor="dateNaissance" className="form-label">Date de naissance</label>
+//             <div className="input-group">
+//                 <span className="input-group-text">
+//                     <i className="fa-regular fa-calendar"></i>
+//                 </span>
+//                 <input
+//                     id="dateNaissance"
+//                     type="date"
+//                     value={dateNaissance || ''}
+//                     onChange={(e) => {
+//                         const selectedDate = e.target.value;
+//                         onDateNaissanceChange(selectedDate);
+//                     }}
+//                     className="form-control py-[10px]"
+//                     max={new Date().toISOString().split('T')[0]} 
+//                 />
+//             </div>
+//         </div>
+//     )
+// }
+
+// function SpecialiteLaboInput({ specialiteLabo, onSpecialiteLaboChange, options }) {
+//     return (
+//       <div className='mb-2'>
+//         <Selecte
+//           label="Spécialité laboratoire"
+//           value={specialiteLabo}
+//           onChange={onSpecialiteLaboChange}
+//           options={options}
+//         />
+//       </div>
+//     );
+// }
+
+// function SpecialiteMediInput({ specialiteMedi, onSpecialiteMediChange, options }) {
+//     return (
+//       <div className='mb-2'>
+//         <Selecte
+//           label="Spécialité médicale"
+//           value={specialiteMedi}
+//           onChange={onSpecialiteMediChange}
+//           options={options}
+//         />
+//       </div>
+//     );
+// }
+
+
+
+// export default SignupStep2;
+
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import axios from 'axios';
 import photodoc2 from '../assets/photodoc2.png';
 import Selecte from '../Components/Selecte';
 import { Input } from '../Components/Input';
@@ -8,71 +276,166 @@ import { useSignup } from '../contexts/SignupContext';
 
 const SignupStep2 = () => {
   const navigate = useNavigate();
-  const { step1Data, resetData } = useSignup()
+  const { step1Data, resetData } = useSignup();
   
+  // Configuration API
+  const api = axios.create({
+    baseURL: 'http://localhost:8000/auth',
+  });
+
   const [formData, setFormData] = useState({
     agents_sante: '',
     civilite: '',
     numero_licence_medicale: '',
-    photo_profil: '',
+    photo_profil: null,
     date_naissance: '',
     specialitemedi: '',
     specialitelabo: '',
   });
 
-  const handleChange = (field) => (value) => {
-    setFormData({
-      ...formData,
-      [field]: value
-    });
-  };
+  const [specialitesMedicales, setSpecialitesMedicales] = useState([]);
+  const [specialitesLaboratoires, setSpecialitesLaboratoires] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState({});
+  const [submitError, setSubmitError] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleFileChange = (field) => (e) => {
-    setFormData({
-      ...formData,
-      [field]: e.target.files[0]
-    });
-  };
+  // Charger les spécialités au montage du composant
+  useEffect(() => {
+    const fetchSpecialites = async () => {
+      try {
+        const [medResponse, labResponse] = await Promise.all([
+          api.get('/specialites-medicales/'),
+          api.get('/specialites-laboratoires/')
+        ]);
+        
+        setSpecialitesMedicales(medResponse.data.map(s => ({
+          value: s.id,
+          label: s.nom
+        })));
+        
+        setSpecialitesLaboratoires(labResponse.data.map(s => ({
+          value: s.id,
+          label: s.nom
+        })));
+      } catch (error) {
+        console.error("Erreur chargement spécialités:", error);
+        setSubmitError("Impossible de charger les spécialités");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+    fetchSpecialites();
+  }, []);
 
-    console.log('Données étape 1:', step1Data);
-
-    console.log('Données étape 2:', formData);
-
-    const finalData = { ...step1Data, ...formData };
-    console.log('Données complètes:', finalData);
-    // Envoyer les données au serveur ici
-
-    resetData();
-    // navigate('/'); 
-  };
-
+  // Options statiques
   const professions = [
-    { value: 'doctor', label: 'Médecin' },
-    { value: 'laborantin', label: 'Technicien de laboratoire' }
+    { value: 'docteur', label: 'Docteur' },
+    { value: 'laborantin', label: 'Laborantin' }
   ];
 
-  const civilite = [
+  const civiliteOptions = [
     { value: 'M', label: 'Monsieur' },
     { value: 'Mme', label: 'Madame' },
   ];
 
-  const specialiteMediOptions = [
-    { value: 'cardiologie', label: 'Cardiologie' },
-    { value: 'pediatrie', label: 'Pédiatrie' },
-    { value: 'dermatologie', label: 'Dermatologie' }
-  ];
+  const handleChange = (field) => (value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    if (errors[field]) setErrors(prev => ({ ...prev, [field]: '' }));
+  };
 
-  const specialiteLaboOptions = [
-    { value: 'biologie', label: 'Biologie médicale' },
-    { value: 'hematologie', label: 'Hématologie' },
-    { value: 'microbiologie', label: 'Microbiologie' }
-  ];
+  const handleFileChange = (field) => (e) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: e.target.files[0]
+    }));
+  };
 
-  const showSpecialiteMedi = formData.agents_sante === 'doctor';
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.agents_sante) newErrors.agents_sante = 'Profession requise';
+    if (!formData.civilite) newErrors.civilite = 'Civilité requise';
+    
+    if (formData.agents_sante === 'docteur') {
+      if (!formData.numero_licence_medicale) newErrors.numero_licence_medicale = 'Numéro de licence requis';
+      if (!formData.specialitemedi) newErrors.specialitemedi = 'Spécialité médicale requise';
+    }
+    
+    if (formData.agents_sante === 'laborantin' && !formData.specialitelabo) {
+      newErrors.specialitelabo = 'Spécialité laboratoire requise';
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    setSubmitError('');
+
+    try {
+      const formDataToSend = new FormData();
+      
+      // Données étape 1
+      formDataToSend.append('username', step1Data.email);
+      formDataToSend.append('email', step1Data.email);
+      formDataToSend.append('first_name', step1Data.firstname);
+      formDataToSend.append('last_name', step1Data.lastname);
+      formDataToSend.append('phone_number', step1Data.phone_number);
+
+      // Données étape 2
+      for (const key in formData) {
+        if (formData[key] !== null && formData[key] !== undefined) {
+          formDataToSend.append(key, formData[key]);
+        }
+      }
+
+      const response = await api.post('/register/', formDataToSend, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      console.log('Inscription réussie:', response.data);
+      resetData();
+      navigate('/registration-success');
+    } catch (error) {
+      console.log("Détails de l'erreur:", error);
+      console.error('Erreur inscription:', error.response?.data || error.message);
+      setSubmitError(error.response?.data?.message || "Erreur lors de l'inscription");
+      
+      if (error.response?.data) {
+        const apiErrors = {};
+        for (const field in error.response.data) {
+          apiErrors[field] = Array.isArray(error.response.data[field]) 
+            ? error.response.data[field].join(' ') 
+            : error.response.data[field];
+        }
+        setErrors(apiErrors);
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const showSpecialiteMedi = formData.agents_sante === 'docteur';
   const showSpecialiteLabo = formData.agents_sante === 'laborantin';
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-xl">Chargement des spécialités...</div>
+      </div>
+    );
+  }
 
   return (
     <div className='flex justify-between bg-slate-50 min-h-screen w-screen'>
@@ -81,72 +444,78 @@ const SignupStep2 = () => {
       </div>
       
       <div className='text-black h-screen w-1/2 bg-blue-200 p-10 flex flex-col justify-around items-center'>
-        <div>
+        <div className='w-full max-w-md'>
           <div className='mb-5'>
             <h3 className='text-lg font-bold mb-2'>Presque terminé !</h3>
             <p>Complétez vos informations professionnelles</p>
           </div>
           
           <form onSubmit={handleSubmit}>
-            <div className="row row-cols-lg">
-              <div className="col">
-                    <ProfessionSelect 
-                    profession={formData.agents_sante} 
-                    onProfessionChange={handleChange('agents_sante')}
-                    options={professions}
-                    />
+            <div className="grid grid-cols-1 gap-4">
+              <div className="grid grid-cols-2 gap-4">
+                <ProfessionSelect 
+                  profession={formData.agents_sante} 
+                  onProfessionChange={handleChange('agents_sante')}
+                  options={professions}
+                  error={errors.agents_sante}
+                />
+                <SpecialtySelect 
+                  civilite={formData.civilite} 
+                  onCiviliteChange={handleChange('civilite')}
+                  options={civiliteOptions}
+                  error={errors.civilite}
+                />
               </div>
-              <div className="col">
-                    <SpecialtySelect 
-                        civilite={formData.civilite} 
-                        onciviliteChange={handleChange('civilite')}
-                        options={civilite}
-                    />
-              </div>
-            </div>
-            
-            <div className="row">
-              <div className="mb-2 col">
-                  <PhotoProfilInput 
-                      onPhotoProfilChange={handleFileChange('photo_profil')}
-                  />
-              </div>
+
+              <PhotoProfilInput 
+                onPhotoProfilChange={handleFileChange('photo_profil')}
+                error={errors.photo_profil}
+              />
+
               {showSpecialiteMedi && (
-                <div className="col">
-                  <SpecialiteMediInput 
-                    specialiteMedi={formData.specialitemedi} 
-                    onSpecialiteMediChange={handleChange('specialitemedi')}
-                    options={specialiteMediOptions}
-                  />
-                </div>
+                <SpecialiteMediInput 
+                  specialiteMedi={formData.specialitemedi} 
+                  onSpecialiteMediChange={handleChange('specialitemedi')}
+                  options={specialitesMedicales}
+                  error={errors.specialitemedi}
+                />
               )}
 
               {showSpecialiteLabo && (
-                <div className="col">
-                  <SpecialiteLaboInput 
-                    specialiteLabo={formData.specialitelabo} 
-                    onSpecialiteLaboChange={handleChange('specialitelabo')}
-                    options={specialiteLaboOptions}
-                  />
-                </div>
+                <SpecialiteLaboInput 
+                  specialiteLabo={formData.specialitelabo} 
+                  onSpecialiteLaboChange={handleChange('specialitelabo')}
+                  options={specialitesLaboratoires}
+                  error={errors.specialitelabo}
+                />
               )}
-            </div>
-            
-            <div className="mb-2">
+
               <DateNaissanceInput 
                 dateNaissance={formData.date_naissance} 
                 onDateNaissanceChange={handleChange('date_naissance')}
+                error={errors.date_naissance}
               />
-            </div>
-            <div className="col">
+
+              {formData.agents_sante === 'docteur' && (
                 <LicenseInput 
-                    license={formData.numero_licence_medicale} 
-                    onLicenseChange={(value) => handleChange('numero_licence_medicale')(value)}
+                  license={formData.numero_licence_medicale} 
+                  onLicenseChange={handleChange('numero_licence_medicale')}
+                  error={errors.numero_licence_medicale}
                 />
-            </div>
-            <div className="w-full">
-              <button type="submit" className='btn btn-primary w-full p-2 mt-4 text-bold text-xl'>
-                Finaliser l'inscription
+              )}
+
+              {submitError && (
+                <div className="text-red-500 text-center p-2 bg-red-50 rounded">
+                  {submitError}
+                </div>
+              )}
+
+              <button 
+                type="submit" 
+                className={`btn btn-primary w-full p-2 text-bold text-xl ${isSubmitting ? 'opacity-70' : ''}`}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Enregistrement en cours...' : 'Finaliser l\'inscription'}
               </button>
             </div>
           </form>
@@ -156,7 +525,7 @@ const SignupStep2 = () => {
   );
 };
 
-function ProfessionSelect({ profession, onProfessionChange, options }) {
+function ProfessionSelect({ profession, onProfessionChange, options, error }) {
   return (
     <div className='mb-2'>
       <Selecte
@@ -166,24 +535,27 @@ function ProfessionSelect({ profession, onProfessionChange, options }) {
         options={options}
         required
       />
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
     </div>
   );
 }
 
-function SpecialtySelect({ civilite, onciviliteChange, options }) {
+function SpecialtySelect({ civilite, onCiviliteChange, options, error }) {
   return (
     <div className='mb-2'>
       <Selecte
         label="Civilité"
         value={civilite}
-        onChange={onciviliteChange}
+        onChange={onCiviliteChange}
         options={options}
+        required
       />
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
     </div>
   );
 }
 
-function LicenseInput({ license, onLicenseChange }) {
+function LicenseInput({ license, onLicenseChange, error }) {
   return (
     <div className='mb-2'>
       <Input 
@@ -192,76 +564,79 @@ function LicenseInput({ license, onLicenseChange }) {
         placeholder="123456789" 
         value={license} 
         onChange={onLicenseChange}
-        
+        required
       />
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
     </div>
   );
 }
 
-function PhotoProfilInput({ onPhotoProfilChange }) {
-    return (
-      <div className='mb-2'>
-            <label className="form-label">Photo de profil</label>
-            <input 
-                type="file" 
-                accept="image/*"
-                onChange={onPhotoProfilChange}
-                className="form-control"
-            />
-      </div>
-    )
+function PhotoProfilInput({ onPhotoProfilChange, error }) {
+  return (
+    <div className='mb-2'>
+      <label className="form-label">Photo de profil</label>
+      <input 
+        type="file" 
+        accept="image/*"
+        onChange={onPhotoProfilChange}
+        className="form-control"
+      />
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+    </div>
+  );
 }
   
-function DateNaissanceInput({ dateNaissance, onDateNaissanceChange }) {
-    return (
-        <div className="mb-2">
-            <label htmlFor="dateNaissance" className="form-label">Date de naissance</label>
-            <div className="input-group">
-                <span className="input-group-text">
-                    <i className="fa-regular fa-calendar"></i>
-                </span>
-                <input
-                    id="dateNaissance"
-                    type="date"
-                    value={dateNaissance || ''}
-                    onChange={(e) => {
-                        const selectedDate = e.target.value;
-                        onDateNaissanceChange(selectedDate);
-                    }}
-                    className="form-control py-[10px]"
-                    max={new Date().toISOString().split('T')[0]} 
-                />
-            </div>
-        </div>
-    )
-}
-
-function SpecialiteLaboInput({ specialiteLabo, onSpecialiteLaboChange, options }) {
-    return (
-      <div className='mb-2'>
-        <Selecte
-          label="Spécialité laboratoire"
-          value={specialiteLabo}
-          onChange={onSpecialiteLaboChange}
-          options={options}
+function DateNaissanceInput({ dateNaissance, onDateNaissanceChange, error }) {
+  return (
+    <div className="mb-2">
+      <label htmlFor="dateNaissance" className="form-label">Date de naissance</label>
+      <div className="input-group">
+        <span className="input-group-text">
+          <i className="fa-regular fa-calendar"></i>
+        </span>
+        <input
+          id="dateNaissance"
+          type="date"
+          value={dateNaissance || ''}
+          onChange={(e) => onDateNaissanceChange(e.target.value)}
+          className="form-control py-[10px]"
+          max={new Date().toISOString().split('T')[0]}
+          required
         />
       </div>
-    );
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+    </div>
+  );
 }
 
-function SpecialiteMediInput({ specialiteMedi, onSpecialiteMediChange, options }) {
-    return (
-      <div className='mb-2'>
-        <Selecte
-          label="Spécialité médicale"
-          value={specialiteMedi}
-          onChange={onSpecialiteMediChange}
-          options={options}
-        />
-      </div>
-    );
+function SpecialiteLaboInput({ specialiteLabo, onSpecialiteLaboChange, options, error }) {
+  return (
+    <div className='mb-2'>
+      <Selecte
+        label="Spécialité laboratoire"
+        value={specialiteLabo}
+        onChange={onSpecialiteLaboChange}
+        options={options}
+        required
+      />
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+    </div>
+  );
 }
 
-
+function SpecialiteMediInput({ specialiteMedi, onSpecialiteMediChange, options, error }) {
+  return (
+    <div className='mb-2'>
+      <Selecte
+        label="Spécialité médicale"
+        value={specialiteMedi}
+        onChange={onSpecialiteMediChange}
+        options={options}
+        required
+      />
+      {error && <div className="text-red-500 text-sm mt-1">{error}</div>}
+    </div>
+  );
+}
 
 export default SignupStep2;

@@ -1,29 +1,26 @@
-import React from 'react'
-import { createContext, useState,useContext } from 'react'
-const SignupContext = createContext()
+// src/contexts/SignupContext.js
+import { createContext, useContext, useState } from 'react';
 
-export const SignupProvider = ({ children }) => {
-    const [step1Data, setStep1Data] = useState(null)
-  
-    const updateStep1Data = (data) => {
-      setStep1Data(data)
-    }
-  
-    const resetData = () => {
-      setStep1Data(null);
-    }
-  
-    return (
-      <SignupContext.Provider value={{ step1Data, updateStep1Data, resetData }}>
-        {children}
-      </SignupContext.Provider>
-    )
+const SignupContext = createContext();
+
+export function SignupProvider({ children }) {
+  const [step1Data, setStep1Data] = useState(null);
+
+  const updateStep1Data = (data) => {
+    setStep1Data(data);
+  };
+
+  const resetData = () => {
+    setStep1Data(null);
+  };
+
+  return (
+    <SignupContext.Provider value={{ step1Data, updateStep1Data, resetData }}>
+      {children}
+    </SignupContext.Provider>
+  );
 }
 
-export const useSignup = () => {
-  const context =  useContext(SignupContext)
-  if(!context){
-    throw new Error('useSignup must be used within a SignupProvider')
-  }
-  return context
+export function useSignup() {
+  return useContext(SignupContext);
 }
