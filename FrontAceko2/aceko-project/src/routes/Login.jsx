@@ -46,8 +46,23 @@ const Login = () => {
       localStorage.setItem('refresh_token', response.data.refresh);
       localStorage.setItem('user', JSON.stringify(response.data.user));
 
-      navigate('/dash');
+      const agents_sante = response.data.user?.agents_sante;
 
+      switch(agents_sante) {
+        case 'admin':
+          navigate('/dash');
+          break;
+        // case 'docteur':
+        //   navigate('/doctor-dashboard');
+        //   break;
+        // case 'laborantin':
+        //   navigate('/lab-dashboard');
+        //   break;
+        default:
+          // Si le type n'est pas reconnu, rediriger vers une page par défaut
+          navigate('/home');
+      }
+      
     } catch (err) {
       console.error('Erreur de connexion:', err);
       setError(err.response?.data?.error || 'Échec de la connexion. Veuillez réessayer.');
