@@ -46,7 +46,7 @@ const Login = () => {
       localStorage.setItem('refresh_token', response.data.refresh);
       localStorage.setItem('user', JSON.stringify(response.data.user));
 
-      navigate('/dashboard');
+      navigate('/dash');
 
     } catch (err) {
       console.error('Erreur de connexion:', err);

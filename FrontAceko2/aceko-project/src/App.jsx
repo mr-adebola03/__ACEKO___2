@@ -12,12 +12,12 @@ import RegistrationSuccess from './routes/RegistrationSuccess';
 
 function App() {
   const location = useLocation(); 
-  const hideNavbar = ['/login', '/signup-step1', '/signup-step2'].includes(location.pathname);
+  const hideNavbar = ['/', '/about'].includes(location.pathname);
  
   return (
     <>
       <div className='min-h-screen flex flex-col bg-gray-50'>
-        {!hideNavbar && <NavBar/>}
+        {hideNavbar && <NavBar/>}
         <Routes>
           <Route path='/login' element={<Login/>} />
           <Route path='/' element={<Home/>}/>
