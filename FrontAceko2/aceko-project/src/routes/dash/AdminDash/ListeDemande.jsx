@@ -12,7 +12,8 @@ const ListeDemande = () => {
   }, [])
 
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
+  const [pendingCount, setPendingCount] = useState(0);
 
   const fetchPendingUsers = async () => {
     try {
@@ -21,7 +22,8 @@ const ListeDemande = () => {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }
       })
-      setUsers(response.data)
+      setUsers(response.data),
+      setPendingCount(response.data.length)
     } catch (error) {
       toast.error('Erreur lors du chargement des demandes')
     } finally {
@@ -38,7 +40,7 @@ const ListeDemande = () => {
   ]
   return (
     <Content>
-      <div>ListeDemande</div>
+      <div>ListeDemande ({pendingCount})</div>
       <Table 
         thead={columns} 
         tbody={users} 
