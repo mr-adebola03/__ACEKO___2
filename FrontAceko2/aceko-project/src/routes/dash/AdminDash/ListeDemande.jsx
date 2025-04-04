@@ -1,26 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Content from '../../../admin/Content'
 import Table from '../../../Components/Tabs/Table'
 import { FaEye } from 'react-icons/fa'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const ListeDemande = () => {
-  const users = [
-    { id: 1, firstName: 'Mark', lastName: 'Otto', username: '@mdo'},
-    { id: 2, firstName: 'Jacob', lastName: 'Thornton', username: '@fat' },
-    { id: 3, firstName: 'Larry', lastName: 'the Bird', username: '@twitter' }
-  ]
+
+  useEffect(() => {
+    fetchPendingUsers()
+  }, [])
+
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true)
+
+  const fetchPendingUsers = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/auth/admin/pending-approvals/', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      })
+      setUsers(response.data)
+    } catch (error) {
+      toast.error('Erreur lors du chargement des demandes')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const columns = [
     {key:'id', label:'ID'},
-    { key: 'firstName', label: 'First Name' },
-    { key: 'lastName', label: 'Last Name' },
-    { key: 'username', label: 'Username' },
+    { key: 'first_name', label: 'First Name' },
+    { key: 'last_name', label: 'Last Name' },
+    { key: 'email', label: 'Email' },
     {key:'actions',label:'Actions'}
   ]
   return (
     <Content>
       <div>ListeDemande</div>
-      <Table thead={columns} tbody={users} show={true} />
+      <Table 
+        thead={columns} 
+        tbody={users} 
+        show={true}
+        loading={loading}
+        emptyMessage="Aucune demande en attente"
+      />
     </Content>
   )
 }
