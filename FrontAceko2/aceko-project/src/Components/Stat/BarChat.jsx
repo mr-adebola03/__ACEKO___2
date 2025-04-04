@@ -1,13 +1,13 @@
 import React from 'react'
 import Chart from 'react-apexcharts'
 
-const BarChat = ({darkMode}) => {
+const BarChat = () => {
 
     const chartConfig = {
         series: [
             {
-            name: "Sales",
-            data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
+                name: "Sales",
+                data: [50, 40, 300, 320, 500, 350, 200, 230, 500],
             },
         ],
         options: {
@@ -40,7 +40,7 @@ const BarChat = ({darkMode}) => {
                 },
                 labels: {
                     style: {
-                    colors: darkMode ? "#dddddd" : "#616161",
+                    colors: "#616161",
                     fontSize: "12px",
                     fontFamily: "inherit",
                     fontWeight: 400,
@@ -61,7 +61,7 @@ const BarChat = ({darkMode}) => {
             yaxis: {
                 labels: {
                     style: {
-                    colors: darkMode ? "#dddddd" : "#616161",
+                    colors: "#616161",
                     fontSize: "12px",
                     fontFamily: "inherit",
                     fontWeight: 400,
@@ -84,9 +84,6 @@ const BarChat = ({darkMode}) => {
             },
             fill: {
                 opacity: 0.8,
-            },
-            tooltip: {
-                theme: "dark",
             },
         },
     }

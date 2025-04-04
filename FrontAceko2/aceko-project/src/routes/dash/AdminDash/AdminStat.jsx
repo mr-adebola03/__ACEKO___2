@@ -3,10 +3,10 @@ import Content from '../../../admin/Content'
 import Stats from '../../../Components/Stat/Stats'
 
 
-const AdminStat = ({darkMode}) => {
+const AdminStat = () => {
   return (
     <Content>
-      <Stats darkMode={darkMode}/>
+      <Stats />
       <div className='flex flex-col gaap-3 lg:flex-row'>
         
       </div>

@@ -14,24 +14,20 @@ import DemandeReject from './AdminDash/DemandeReject'
 import AdminValidation from './AdminDash/AdminValidation'
 
 const AdminDash = () => {
-  const [darkMode,setDarkMode] = useState(false)
   const [isSidebarOpen,setIsSidebarOpen] = useState(false)
 
-  const toogleDarkMode = ()=>{
-    setDarkMode(!darkMode)
-  }
 
   const toogleSidebar = ()=>{
     setIsSidebarOpen(!isSidebarOpen)
   }
 
   return (
-    <div className={`${darkMode && "dark"} font-quickSand`}>
-      <Header toogleDarkMode={toogleDarkMode} darkMode={darkMode} toogleSidebar={toogleSidebar}/>
+    <div className={`font-quickSand`}>
+      <Header  toogleSidebar={toogleSidebar}/>
       <SideBar2 isSidebarOpen={isSidebarOpen}/>
       <Main>
         <Routes>
-          <Route path='/stat' element={<AdminStat darkMode={darkMode} />} />
+          <Route path='/stat' element={<AdminStat/>} />
           <Route path='/all-demande' element={<ListeDemande/>}/>
           <Route path='/accept-demande' element={<DemandeAccept/>} />
           <Route path='/reject-demande' element={<DemandeReject/>} />

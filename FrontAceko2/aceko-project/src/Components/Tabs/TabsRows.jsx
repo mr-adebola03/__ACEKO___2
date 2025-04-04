@@ -10,10 +10,10 @@ const TabsRows = ({ data, index, columns,showEye=false }) => {
         .filter(column => column.key !== 'id' && column.key !== 'actions') 
         .map((column) => (
           <td key={column.key}>{data[column.key]}</td>
-        ))}
-      <td>
-        {showEye && <Link to='/admin/validated' className='text-blue-500 hover:text-blue-700'><FaEye /></Link>}
-      </td>
+        ))
+      }
+      {showEye && <td><Link to='/admin/validated' className='text-blue-500 hover:text-blue-700'><FaEye /></Link></td>}
+      
     </tr>
   )
 }

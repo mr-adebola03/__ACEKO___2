@@ -1,7 +1,7 @@
 import React from 'react'
 import Chart from 'react-apexcharts'
 
-const DonutChart = ({darkMode}) => {
+const DonutChart = () => {
 
     const options = {
         series: [44, 55, 41],
@@ -15,7 +15,7 @@ const DonutChart = ({darkMode}) => {
             legend: {
                 position: "bottom",
                 labels: {
-                    colors: darkMode ? "#dddddd" : "#000000",
+                    colors: "#000000",
                 },
             },
             dataLabels: {
@@ -40,7 +40,7 @@ const DonutChart = ({darkMode}) => {
     }
 
   return (
-    <div className='py-6 bg-white rounded-lg p-5 flex dark:bg-gray-600 items-center justify-center '>
+    <div className='py-6 bg-white rounded-lg p-5 flex items-center justify-center '>
         <Chart options={options.options} series={options.series} type='donut' height={350} />
     </div>
   )

@@ -3,7 +3,7 @@ import userLogo from '../../assets/user01.png'
 
 const User = () => {
   return (
-    <div className='flex gap-3 items-center bg-white p-4 rounded-full dark:bg-gray-700 dark:text-gray-300'>
+    <div className='flex gap-3 items-center bg-white p-4 rounded-full '>
         <img src={userLogo} alt="user image"  className='w-14 h-14 rounded-full'/>
         <div >
             <h3 className='font-semibold text-2xl'>John Doe</h3>
