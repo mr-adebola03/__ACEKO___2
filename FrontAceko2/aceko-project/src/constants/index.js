@@ -63,7 +63,6 @@ export const links = [
   },
 ]
 
-<<<<<<< Updated upstream
 export const notifications = [
   {
     href: "/docteur/notification",
@@ -90,12 +89,34 @@ export const notifications = [
     badge: FaArrowUpRightFromSquare
   },
 ]
+// export const notifications = [
+//   {
+//     href: "/docteur/notification",
+//     icon: user01,
+//     text: "Resultats examen disponible",
+//     badge: FaArrowUpRightFromSquare
+//   },
+//   {
+//     href: "/docteur/notification",
+//     icon: user02,
+//     text: "Urgence patient",
+//     badge: FaArrowUpRightFromSquare
+//   },
+//   {
+//     href: "/docteur/notification",
+//     icon: user03,
+//     text: "Patient en crise",
+//     badge: FaArrowUpRightFromSquare
+//   },
+//   {
+//     href: "/docteur/notification",
+//     icon: user01,
+//     text: "Le patient n'a pas respecté la marge prevue pour son rendez-vous",
+//     badge: FaArrowUpRightFromSquare
+//   },
+// ]
 
-
-export const empolyeesData = [
-=======
 export const getEmployeesData = (counts) => [
->>>>>>> Stashed changes
   {
     title: "Total Medecins",
     icon: IoIosPerson,
