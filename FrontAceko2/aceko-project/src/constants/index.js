@@ -63,6 +63,7 @@ export const links = [
   },
 ]
 
+<<<<<<< Updated upstream
 export const notifications = [
   {
     href: "/docteur/notification",
@@ -92,22 +93,25 @@ export const notifications = [
 
 
 export const empolyeesData = [
+=======
+export const getEmployeesData = (counts) => [
+>>>>>>> Stashed changes
   {
     title: "Total Medecins",
     icon: IoIosPerson,
-    count: 30,
+    count: counts.total || 0,
     bgColor: "bg-gray-100",
   },
   {
     title: "Non Approuvé",
     icon: IoIosEyeOff,
-    count: 15,
+    count: counts.pending || 0,
     bgColor: "bg-blue-100",
   },
   {
     title: "Approuvé",
     icon: IoIosPersonAdd,
-    count: 25,
+    count: counts.approved || 0,
     bgColor: "bg-yellow-100",
   },
 ];
