@@ -17,7 +17,7 @@ function App() {
  
   return (
     <>
-      <div className='min-h-screen flex flex-col bg-gray-50'>
+      <div className='min-h-screen flex flex-col bg-slate-200'>
         {hideNavbar && <NavBar/>}
         <Routes>
           <Route path='/login' element={<Login/>} />
