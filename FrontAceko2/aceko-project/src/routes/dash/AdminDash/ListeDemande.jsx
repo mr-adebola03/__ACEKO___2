@@ -38,9 +38,10 @@ const ListeDemande = () => {
     { key: 'email', label: 'Email' },
     {key:'actions',label:'Actions'}
   ]
+
   return (
     <Content>
-      <div>ListeDemande ({pendingCount})</div>
+      <div>ListeDemande ({pendingCount}) </div>
       <Table 
         thead={columns} 
         tbody={users} 
