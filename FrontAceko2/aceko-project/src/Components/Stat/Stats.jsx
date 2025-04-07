@@ -48,13 +48,13 @@ const Stats = () => {
   }
 
   return (
-    <div className='flex flex-col md:flex-row gap-5'>
-      <div className="flex flex-col gap-4 h-full">
+    <div className='gap-5'>
+      <div className="flex justify-between items-center gap-4 h-full">
         {employeesData.map((data, index) => (
           <Card key={index} data={data} />
         ))}
       </div>
-      <Balance />
+      {/* <Balance /> */}
     </div>
   );
 };

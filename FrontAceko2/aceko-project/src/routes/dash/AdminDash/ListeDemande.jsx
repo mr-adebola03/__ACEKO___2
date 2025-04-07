@@ -40,16 +40,16 @@ const ListeDemande = () => {
   ]
 
   return (
-    <Content>
-      <div>ListeDemande ({pendingCount}) </div>
-      <Table 
-        thead={columns} 
-        tbody={users} 
-        show={true}
-        loading={loading}
-        emptyMessage="Aucune demande en attente"
-      />
-    </Content>
+      <div>
+        <div className='mb-2 px-1'>ListeDemande ({pendingCount}) </div>
+        <Table 
+          thead={columns} 
+          tbody={users} 
+          show={true}
+          loading={loading}
+          emptyMessage="Aucune demande en attente"
+        />
+      </div>
   )
 }
 

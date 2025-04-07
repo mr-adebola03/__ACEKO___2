@@ -22,7 +22,7 @@ const AdminDash = () => {
   }
 
   return (
-    <div className={`font-quickSand`}>
+    <div>
       <Header  toogleSidebar={toogleSidebar}/>
       <SideBar2 isSidebarOpen={isSidebarOpen}/>
       <Main>
@@ -33,12 +33,6 @@ const AdminDash = () => {
           <Route path='/reject-demande' element={<DemandeReject/>} />
           <Route path='/validated' element={<AdminValidation/>} />
         </Routes>
-        {/* <Content>
-          <Stats darkMode={darkMode}/>
-          <div className='flex flex-col gaap-3 lg:flex-row'>
-
-          </div>
-        </Content> */}
         <Profile/>
       </Main>
     </div>

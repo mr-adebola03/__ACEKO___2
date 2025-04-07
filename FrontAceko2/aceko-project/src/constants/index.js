@@ -41,16 +41,7 @@ export const links = [
     icon: FaChartBar,
     text: "Dashboard",
   },
-  {
-    href: "/admin/all-demande",
-    icon: FaCalendarAlt,
-    text: "All Demande",
-    badge: {
-      text: "Pro",
-      color: "bg-gray-100 text-gray-800",
-      darkColor: "dark:bg-gray-700 dark:text-gray-300",
-    },
-  },
+
   {
     href: "/admin/accept-demande",
     icon: FaFacebookMessenger,
