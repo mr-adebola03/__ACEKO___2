@@ -15,7 +15,7 @@ const SideBar2 = ({isSidebarOpen}) => {
                 }
             </ul>
             <ul>
-                <LinksItems href={"/admin/logout"} icon={IoIosLogOut} text={"logout"} />
+                <LinksItems href={"/"} icon={IoIosLogOut} text={"logout"} />
             </ul>
         </div>
     </aside>
