@@ -50,7 +50,7 @@ const Login = () => {
 
       switch(agents_sante) {
         case 'admin':
-          navigate('/dash');
+          navigate('/admin/stat');
           break;
         // case 'docteur':
         //   navigate('/doctor-dashboard');
