@@ -1,7 +1,6 @@
 import React from 'react'
 import { Input } from '../../../Components/Input'
 import Content from '../../../admin/Content'
-import PhotoPatient from '../../../assets/user02.png'
 
 const AdminValidation = () => {
     const uservalue = {
@@ -22,7 +21,7 @@ const AdminValidation = () => {
         <h1 className='font-semibold text-gray-500 text-xl '>Validation demande d'inscription</h1>
         <div className=" bg-white px-3 py-5 rounded-xl flex flex-col">
             <div className="flex py-2 px-4 mb-2">
-                <img src="" alt="Photo medecin" className='w-36 h-36 mr-5 p-2 rounded-sm bg-gray-500' />
+                <img src={uservalue.photo_profil} alt="Photo medecin" className='w-36 h-36 mr-5 p-2 rounded-sm bg-gray-500' />
                 <div className='flex flex-col p-1 w-[70%]'>
                     <h3 className='mb-2 text-xl flex justify-between items-baseline w-full'>First name : <span className='font-semibold text-gray-500'>{uservalue.first_name}</span></h3>
                     <h3 className='mb-2 text-xl flex justify-between items-baseline w-full'>Last name : <span className='font-semibold text-gray-500'>{uservalue.last_name}</span></h3>
@@ -50,14 +49,10 @@ const AdminValidation = () => {
                         <button className='bg-blue-500 text-xl text-slate-100 font-semibold py-2 px-4 text-center rounded-lg'>Accepter</button>
                     </div>
                     <div className="">
-                        <button className='bg-red-500 text-xl text-slate-100 font-semibold py-2 px-4 text-center rounded-lg'>Accepter</button>
+                        <button className='bg-red-500 text-xl text-slate-100 font-semibold py-2 px-4 text-center rounded-lg'>Refuser</button>
                     </div>
                 </div>
             </form>
-        </div>
-        
-        <div className='flex flex-col gap-3 lg:flex-row'>
-        
         </div>
     </Content>
   )

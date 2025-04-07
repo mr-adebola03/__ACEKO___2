@@ -1,25 +1,39 @@
 import { GoGoal } from "react-icons/go";
 import { GrPlan } from "react-icons/gr";
-import {
-  IoIosStats,
-  IoIosSettings,
-  IoIosPerson,
-  IoIosPersonAdd,
-  IoIosEyeOff,
-  IoIosLogIn,
-  IoIosLogOut,
-} from "react-icons/io";
-import {
-  FaChartBar,
-  FaCalendarAlt,
-  FaFacebookMessenger,
-  FaUsersCog,
-  FaListAlt,
-} from "react-icons/fa";
+import { HiOutlineViewGrid } from "react-icons/hi";
+import { LuCalendarPlus } from "react-icons/lu";
+import {IoIosStats,IoIosSettings,IoIosPerson,IoIosPersonAdd,IoIosEyeOff,IoIosLogOut,} from "react-icons/io";
+import {FaChartBar,FaCalendarAlt,FaFacebookMessenger,FaUsersCog,FaUserPlus,} from "react-icons/fa";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { FiBookOpen } from "react-icons/fi";
 
 import user01 from "../assets/user01.png";
 import user02 from "../assets/user02.png";
 import user03 from "../assets/user03.png";
+
+
+export const docteurs = [
+  {
+    href: "/docteur/dashboard",
+    icon: HiOutlineViewGrid,
+    text: "Dashboard",
+  },
+  {
+    href: "/docteur/create-patient-document",
+    icon: FaUserPlus,
+    text: "Create Doc",
+  },
+  {
+    href: "/docteur/all-patients",
+    icon: FiBookOpen,
+    text: "ALL Patients",
+  },
+  {
+    href: "/docteur/my-appointments",
+    icon: LuCalendarPlus,
+    text: "My Appointments",
+  },
+]
 
 export const links = [
   {
@@ -31,6 +45,11 @@ export const links = [
     href: "/admin/all-demande",
     icon: FaCalendarAlt,
     text: "All Demande",
+    badge: {
+      text: "Pro",
+      color: "bg-gray-100 text-gray-800",
+      darkColor: "dark:bg-gray-700 dark:text-gray-300",
+    },
   },
   {
     href: "/admin/accept-demande",
@@ -43,6 +62,34 @@ export const links = [
     text: "Reject Demande",
   },
 ]
+
+export const notifications = [
+  {
+    href: "/docteur/notification",
+    icon: user01,
+    text: "Resultats examen disponible",
+    badge: FaArrowUpRightFromSquare
+  },
+  {
+    href: "/docteur/notification",
+    icon: user02,
+    text: "Urgence patient",
+    badge: FaArrowUpRightFromSquare
+  },
+  {
+    href: "/docteur/notification",
+    icon: user03,
+    text: "Patient en crise",
+    badge: FaArrowUpRightFromSquare
+  },
+  {
+    href: "/docteur/notification",
+    icon: user01,
+    text: "Le patient n'a pas respecté la marge prevue pour son rendez-vous",
+    badge: FaArrowUpRightFromSquare
+  },
+]
+
 
 export const empolyeesData = [
   {
