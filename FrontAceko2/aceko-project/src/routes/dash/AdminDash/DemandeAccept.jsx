@@ -25,6 +25,7 @@ const DemandeAccept = () => {
       setAdminPendingCount(response.data.length)
     } catch (error) {
       toast.error('Erreur lors du chargement des demandes')
+      console.log('Détails:', error.response?.data || error.message)
     } finally {
       setLoading(false)
     }

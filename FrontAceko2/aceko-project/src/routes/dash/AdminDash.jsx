@@ -31,7 +31,7 @@ const AdminDash = () => {
           <Route path='/all-demande' element={<ListeDemande/>}/>
           <Route path='/accept-demande' element={<DemandeAccept/>} />
           <Route path='/reject-demande' element={<DemandeReject/>} />
-          <Route path='/validated' element={<AdminValidation/>} />
+          <Route path='/validated/:id' element={<AdminValidation/>} />
         </Routes>
         <Profile/>
       </Main>

@@ -1,30 +1,61 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Content from '../../../admin/Content'
 import Table from '../../../Components/Tabs/Table'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
-const DemandeReject = () => {
+const RejectedUsersList = () => {
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const users = [
-    { id: 1, firstName: 'Mark', lastName: 'Jean', username: '@marJ',email: 'mark@gmail.com', poste: 'Docteur'},
-    { id: 2, firstName: 'Jack', lastName: 'Thornton', username: '@JacTh',email: 'jack@gmail.com', poste: 'Laborantin' },
-    { id: 3, firstName: 'Larson', lastName: 'Bird', username: '@LasBir',email: 'larson@gmail.com', poste: 'Laborantin' }
-  ]
+  useEffect(() => {
+    fetchRejectedUsers()
+  }, [])
+
+  const fetchRejectedUsers = async () => {
+    try {
+      const response = await axios.get('http://localhost:8000/auth/admin/users/rejected/', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('access_token')}`
+        }
+      })
+      setUsers(response.data)
+    } catch (error) {
+      toast.error('Erreur lors du chargement des utilisateurs rejetés')
+      console.log('Détails:', error.response?.data || error.message)
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const columns = [
-    {key:'id', label:'ID'},
-    { key: 'firstName', label: 'First Name' },
-    { key: 'lastName', label: 'Last Name' },
-    { key: 'username', label: 'Username' },
-    {key:'email',label:'Actions'},
-    { key: 'poste', label: 'Poste' },
+    { key: 'id', label: 'ID' },
+    { key: 'first_name', label: 'Prénom' },
+    { key: 'last_name', label: 'Nom' },
+    { key: 'email', label: 'Email' },
+    { 
+      key: 'rejection_date', 
+      label: 'Date de rejet',
+      render: (item) => new Date(item.rejection_date).toLocaleDateString()
+    },
+    { 
+      key: 'rejection_reason', 
+      label: 'Raison du rejet',
+      render: (item) => item.rejection_reason || 'Non spécifiée'
+    }
   ]
 
   return (
     <Content>
-      <div>Demande rejeté</div>
-      <Table thead={columns} tbody={users} />
+      <div className='mb-2 px-1'>Liste des utilisateurs rejetés ({users.length})</div>
+      <Table 
+        thead={columns} 
+        tbody={users} 
+        loading={loading}
+        emptyMessage="Aucun utilisateur rejeté"
+      />
     </Content>
   )
 }
 
-export default DemandeReject
+export default RejectedUsersList

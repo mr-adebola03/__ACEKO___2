@@ -12,7 +12,7 @@ const TabsRows = ({ data, index, columns,showEye=false }) => {
           <td key={column.key}>{data[column.key]}</td>
         ))
       }
-      {showEye && <td><Link to='/admin/validated' className='text-blue-500 hover:text-blue-700'><FaEye /></Link></td>}
+      {showEye && <td><Link to={`/admin/validated/${data.id}`} className='text-blue-500 hover:text-blue-700'><FaEye /></Link></td>}
       
     </tr>
   )

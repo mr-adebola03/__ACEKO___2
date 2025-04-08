@@ -26,17 +26,18 @@ const ListeDemande = () => {
       setPendingCount(response.data.length)
     } catch (error) {
       toast.error('Erreur lors du chargement des demandes')
+      console.log('Détails:', error.response?.data || error.message)
     } finally {
       setLoading(false)
     }
   }
-
+  console.log('Users data:', users)
   const columns = [
     {key:'id', label:'ID'},
     { key: 'first_name', label: 'First Name' },
     { key: 'last_name', label: 'Last Name' },
     { key: 'email', label: 'Email' },
-    {key:'actions',label:'Actions'}
+    { key: 'actions', label: 'Actions' }
   ]
 
   return (
@@ -46,6 +47,7 @@ const ListeDemande = () => {
           thead={columns} 
           tbody={users} 
           show={true}
+          // showEye={true}
           loading={loading}
           emptyMessage="Aucune demande en attente"
         />

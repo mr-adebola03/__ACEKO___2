@@ -46,20 +46,25 @@ const Login = () => {
       localStorage.setItem('refresh_token', response.data.refresh);
       localStorage.setItem('user', JSON.stringify(response.data.user));
 
+      if (!localStorage.getItem('access_token')) {
+        throw new Error("Échec du stockage du token");
+      }
+  
+      await new Promise(resolve => setTimeout(resolve, 50));
+
       const agents_sante = response.data.user?.agents_sante;
 
       switch(agents_sante) {
         case 'admin':
           navigate('/admin/stat');
           break;
-        // case 'docteur':
-        //   navigate('/doctor-dashboard');
-        //   break;
+        case 'docteur':
+          navigate('/docteur/dashboard');
+          break;
         // case 'laborantin':
         //   navigate('/lab-dashboard');
         //   break;
         default:
-          // Si le type n'est pas reconnu, rediriger vers une page par défaut
           navigate('/home');
       }
       
