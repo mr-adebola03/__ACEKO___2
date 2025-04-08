@@ -23,6 +23,7 @@ from django.conf import settings
 import random
 import string
 from django.utils import timezone
+from rest_framework.permissions import IsAuthenticated
 
 User = get_user_model()
 
@@ -155,6 +156,14 @@ class UserDetailView(generics.RetrieveAPIView):
     
     def get_object(self):
         return get_object_or_404(User, pk=self.kwargs['pk'])
+    
+class UpdateProfileView(APIView):
+    def patch(self, request):
+        serializer = UserProfileSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)  # Retourne TOUTES les données
+        return Response(serializer.errors, status=400)
     
 class PendingApprovalListView(generics.ListAPIView):
     queryset = User.objects.filter(is_approved=False, is_rejected=False)
