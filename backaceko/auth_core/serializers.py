@@ -24,7 +24,7 @@ class SpecialiteLaboratoireSerializer(serializers.ModelSerializer):
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'username','first_name','last_name', 'agents_sante', 'civilite', 'phone_number', 
+        fields = ['id','email', 'username','first_name','last_name', 'agents_sante', 'civilite', 'phone_number', 
                  'specialitemedi', 'specialitelabo', 'medical_license', 
                  'numero_licence_medicale', 'photo_profil', 'date_naissance']
         extra_kwargs = {
@@ -114,6 +114,6 @@ class ChangePasswordSerializer(serializers.Serializer):
 class UserProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'username','first_name','last_name', 'agents_sante', 'civilite', 'phone_number', 
+        fields = ['id','email', 'username','first_name','last_name', 'agents_sante', 'civilite', 'phone_number', 
                  'specialitemedi', 'specialitelabo', 'numero_licence_medicale', 
-                 'photo_profil', 'date_naissance', 'is_approved']
+                 'photo_profil', 'date_naissance', 'is_approved', 'is_rejected', 'rejection_date', 'rejection_reason']
