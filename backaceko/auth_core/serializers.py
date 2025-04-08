@@ -7,7 +7,19 @@ from django.conf import settings
 import random
 import string
 
+from auth_core.models import SpecialiteMedicale, SpecialiteLaboratoire
+
 User = get_user_model()
+
+class SpecialiteMedicaleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SpecialiteMedicale
+        fields = ['id', 'nom']
+
+class SpecialiteLaboratoireSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SpecialiteLaboratoire
+        fields = ['id', 'nom']
 
 class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -54,6 +66,31 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         to = settings.ADMIN_EMAIL  
         
         send_mail(subject, plain_message, from_email, [to], html_message=html_message)
+        
+    def validate_email(self, value):
+        if User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Cet email est déjà utilisé.")
+        return value
+
+    def validate_phone_number(self, value):
+        if not value.isdigit() or len(value) != 10:
+            raise serializers.ValidationError("Numéro de téléphone invalide.")
+        return value
+
+    def validate(self, data):
+        agents_sante = data.get('agents_sante')
+        
+        if agents_sante == 'docteur' and not data.get('numero_licence_medicale'):
+            raise serializers.ValidationError({
+                'numero_licence_medicale': 'Le numéro de licence est requis pour les médecins.'
+            })
+            
+        if agents_sante == 'laborantin' and not data.get('specialitelabo'):
+            raise serializers.ValidationError({
+                'specialitelabo': 'La spécialité de laboratoire est requise pour les laborantins.'
+            })
+            
+        return data   
 
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()
