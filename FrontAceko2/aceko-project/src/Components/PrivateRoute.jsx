@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { isTokenExpired } from '../utils/auth';
 
 const PrivateRoute = ({ children }) => {
-const [isAuth, setIsAuth] = useState(null);
+  const [isAuth, setIsAuth] = useState(null);
 
   useEffect(() => {
     const checkAuth = () => {
