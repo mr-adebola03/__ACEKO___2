@@ -52,6 +52,8 @@ class CustomUser(AbstractUser):
         date_naissance = models.DateField(blank=True, null=True)
         is_approved = models.BooleanField(default=False)
         is_rejected = models.BooleanField(default=False)
+        rejection_date = models.DateTimeField(null=True, blank=True)
+        rejection_reason = models.TextField(blank=True)
         temporary_password = models.CharField(max_length=100, blank=True, null=True)
         
         USERNAME_FIELD = 'email'
