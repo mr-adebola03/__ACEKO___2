@@ -31,11 +31,15 @@ function App() {
           <Route path='/registration-success' element={<RegistrationSuccess/>} />
           <Route path='/forgot-password' element={<ForgotPassword/>}  />
           <Route path='/admin/*' element={
+              <PrivateRoute> 
+                <AdminDash/>
+              </PrivateRoute>
+          }/>
+          <Route path='/docteur/*' element={
             <PrivateRoute> 
-               <AdminDash/>
-                </PrivateRoute>
-            }/>
-          <Route path='/docteur/*' element={<DocteurDash/>} />
+              <DocteurDash/>
+            </PrivateRoute>
+            } />
           <Route path='/signup-step1' element={<SignupStep1 />} />
           <Route path='/signup-step2' element={<SignupStep2 />} />
         </Routes>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaBell, FaHandHoldingHeart } from 'react-icons/fa'
 import { FaGear } from 'react-icons/fa6'
 import UserProfile from '../../assets/user02.png'
@@ -7,6 +7,8 @@ import { IoIosArrowForward } from "react-icons/io"
 import { Link, useLocation } from 'react-router'
 import { notifications } from '../../constants'
 import NotificationItems from './NotificationItems'
+import axios from 'axios'
+import toast from 'react-toastify'
 
 const DocteurHeader = ({toogleSidebar,isMenuOpen}) => {
     const location = useLocation()
@@ -14,6 +16,24 @@ const DocteurHeader = ({toogleSidebar,isMenuOpen}) => {
     const toggleNotification = ()=>{
         setNotification(!notification)
     }
+
+    const [user, setUser] = useState()
+
+    useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+              const response = await axios.get(`http://localhost:8000/auth/admin/profile/`, {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                }
+              })
+              setUser(response.data)
+            } catch (error) {
+              toast.error('Erreur lors du chargement des données utilisateur')
+              console.error('Détails:', error.response?.data || error.message)
+            } 
+        } 
+    }, [])
     return ( 
         <nav className='fixed top-0 z-50 w-full bg-slate-200 border-b border-gray-200 '>
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -30,7 +50,7 @@ const DocteurHeader = ({toogleSidebar,isMenuOpen}) => {
                                 (()=>{
                                     switch(location.pathname){
                                         case "/docteur/dashboard":
-                                            return  <p className='text-xl text-slate-500 font-medium'>Hi, Jean de Dieu! Glad to have you back</p>
+                                            return  <p className='text-xl text-slate-500 font-medium'>Hi, {user.first_name} {user.last_name}! Glad to have you back</p>
                                         case "/docteur/create-patient-document":
                                             return <div >
                                                 <h3 className='text-xl text-slate-500 font-medium'>Open new Document</h3>
