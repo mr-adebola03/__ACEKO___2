@@ -51,6 +51,7 @@ class CustomUser(AbstractUser):
         photo_profil = models.ImageField(upload_to='photos_profils/', blank=True, null=True)
         date_naissance = models.DateField(blank=True, null=True)
         is_approved = models.BooleanField(default=False)
+        is_rejected = models.BooleanField(default=False)
         temporary_password = models.CharField(max_length=100, blank=True, null=True)
         
         USERNAME_FIELD = 'email'
