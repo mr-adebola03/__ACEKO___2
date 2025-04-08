@@ -125,7 +125,14 @@ const DocteurHeader = ({ toogleSidebar, isMenuOpen }) => {
               <FaGear className='text-xl text-blue-400' />
             </div>
             <div className='w-6 h-6 rounded-full cursor-pointer'>
-              <img src={UserProfile} alt='Profil utilisateur' className='w-full h-full rounded-full' />
+            <Link to='/docteur/my-profile'>  
+              <img 
+                src={user?.photo_profil} 
+                alt='Profil utilisateur' 
+                className='w-full h-full rounded-full '
+              />
+            </Link>
+              {/* <img src={user.photo_profil} alt='Profil utilisateur' className='w-full h-full rounded-full' /> */}
             </div>
           </div>
         </div>
