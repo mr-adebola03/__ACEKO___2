@@ -12,8 +12,9 @@ class CustomPatientSerializer(serializers.ModelSerializer):
                         'civilite', 'date_naissance', 
                         'adresse', 'ville', 
                         'contact', 'contact_urgence', 
-                        'stade_mrc'
-                        'numerodossier'
+                        'stade_mrc',
+                        'numerodossier',
+                        'date_creation',
                 ]
                 read_only_fields = ('id', 'numerodossier')
                 
