@@ -29,18 +29,20 @@ class CustomPatient(models.Model):
         contact_urgence = models.CharField(max_length=10, blank=True, null=True)
         stade_mrc = models.CharField(max_length=20, choices=STATE_MRC, blank=True)
         docteur = models.ForeignKey(Docteur, on_delete=models.SET_NULL, null=True, blank=True)
+        date_creation = models.DateTimeField(auto_now_add=True)
         
         class Meta:
                 verbose_name = "Patient"
+                ordering = ['-date_creation']
                 
         def __str__(self):
                 return f"{self.first_name} {self.last_name}"      
         
         def save(self, *args, **kwargs):
-                if not self.numero_dossier:
+                if not self.numerodossier:
                         dernier_id = CustomPatient.objects.count() + 1
-                        self.numero_dossier = f"AB{dernier_id:06d}"  
+                        self.numerodossier = f"AB{dernier_id:06d}"  
                 super().save(*args, **kwargs)
 
         def __str__(self):
-                return self.numero_dossier 
+                return self.numerodossier 
