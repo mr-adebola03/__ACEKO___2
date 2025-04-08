@@ -2,8 +2,30 @@ import React from 'react'
 import { docteurs, links } from '../../constants'
 import DocteurItems from './DocteurItems'
 import { IoIosLogOut } from 'react-icons/io'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const SideBar3 = ({isSidebarOpen}) => {
+
+    
+    const navigate = useNavigate();
+    
+    const handleLogout = async () => {
+        try {
+          await axios.post('http://localhost:8000/auth/logout/', {}, {
+            withCredentials: true
+          });
+        } finally {
+          cleanupAndRedirect();
+        }
+      };
+      
+      const cleanupAndRedirect = () => {
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('user');
+        navigate('/login');
+      };
 
   return (
     
@@ -17,7 +39,16 @@ const SideBar3 = ({isSidebarOpen}) => {
                 }
             </ul>
             <ul>
-                <DocteurItems href={"/"} icon={IoIosLogOut}/>
+                {/* <DocteurItems href={"/"} icon={IoIosLogOut}/> */}
+                <li>
+                    <button
+                    onClick={handleLogout}
+                    className="flex items-center gap-2 px-2 py-2 text-red-600 hover:text-white hover:bg-red-600 rounded transition"
+                    >
+                    <IoIosLogOut size={25} />
+                    
+                    </button>
+                </li>
             </ul>
         </div>
     </aside>
