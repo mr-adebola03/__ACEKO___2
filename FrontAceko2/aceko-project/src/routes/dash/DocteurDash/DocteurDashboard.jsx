@@ -1,6 +1,7 @@
 import React from 'react'
 import Content from '../../../admin/Content'
 import Title from '../../../admin/Title'
+import UserProfile from '../../../assets/user02.png'
 import { FaRegCheckCircle } from "react-icons/fa";
 
 const DocteurDashboard = () => {
@@ -70,8 +71,27 @@ const DocteurDashboard = () => {
           </div>
         </div>
       </div>
-      <div>
-
+      <div className='flex flex-col justify-between w-[20%]'>
+        <div className='h-[350px] rounded-xl bg-slate-100 p-2'>
+          <Title>Upcoming</Title>
+          <div className='my-2 px-1 text-xs'></div>
+          <div className='flex flex-col'>
+            <div className='flex justify-between items-center mb-1'>
+              <div className="w-6 h-6 rounded-full cursor-pointer">
+                <img src={UserProfile} alt="" className='w-full h-full rounded-full' />
+              </div>
+              <div className='flex flex-col items-start'>
+                <h3>Dr.McCoy</h3>
+                <p>Psychotherapiat</p>
+              </div>
+              <div className='flex flex-col items-start'>
+                <h3>12:00</h3>
+                <p>Today</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div></div>
       </div>
     </Content>
   )
