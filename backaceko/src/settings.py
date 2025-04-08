@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'auth_core',
+    'patient'
 ]
 
 REST_FRAMEWORK = {
