@@ -1,13 +1,19 @@
+from datetime import datetime
+from django.shortcuts import get_object_or_404
 from rest_framework import generics, status, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.contrib.auth import get_user_model
+
+from .models import SpecialiteMedicale, SpecialiteLaboratoire, CustomUser
 from .serializers import (
     UserRegisterSerializer, 
     UserLoginSerializer,
     UserApprovalSerializer,
     ChangePasswordSerializer,
     UserProfileSerializer,
+    SpecialiteMedicaleSerializer,
+    SpecialiteLaboratoireSerializer
 )
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.core.mail import send_mail
@@ -16,8 +22,24 @@ from django.utils.html import strip_tags
 from django.conf import settings
 import random
 import string
+from django.utils import timezone
 
 User = get_user_model()
+
+class SpecialiteMedicaleList(generics.ListAPIView):
+    queryset = SpecialiteMedicale.objects.all()
+    serializer_class = SpecialiteMedicaleSerializer
+
+class SpecialiteLaboratoireList(generics.ListAPIView):
+    queryset = SpecialiteLaboratoire.objects.all()
+    serializer_class = SpecialiteLaboratoireSerializer
+
+class OptionsView(APIView):
+    def get(self, request):
+        return Response({
+            'agents_sante': CustomUser.AGENTS_SANTE,
+            'civilite': CustomUser.CIVILITE
+        })
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
@@ -68,6 +90,10 @@ class ApproveUserView(generics.UpdateAPIView):
         instance.temporary_password = password
         instance.is_approved = True
         instance.is_active = True
+        instance.is_rejected = False
+        # instance.rejection_reason = None
+        # instance.rejection_date = None
+
         instance.save()
         
         #email utilisateur
@@ -78,7 +104,7 @@ class ApproveUserView(generics.UpdateAPIView):
             'message': 'Utilisateur approuvé avec succès',
             'user': UserProfileSerializer(instance).data
         })
-    
+            
     def send_approval_email(self, user, password):
         subject = "Votre compte a été approuvé"
         html_message = render_to_string('user_approval_email.html', {
@@ -122,23 +148,74 @@ class UserProfileView(generics.RetrieveAPIView):
     def get_object(self):
         return self.request.user
 
-class PendingApprovalListView(generics.ListAPIView):
-    queryset = User.objects.filter(is_approved=False)
+class UserDetailView(generics.RetrieveAPIView):
+    queryset = User.objects.all()
     serializer_class = UserProfileSerializer
     permission_classes = [permissions.IsAdminUser]
     
+    def get_object(self):
+        return get_object_or_404(User, pk=self.kwargs['pk'])
+    
+class PendingApprovalListView(generics.ListAPIView):
+    queryset = User.objects.filter(is_approved=False, is_rejected=False)
+    serializer_class = UserProfileSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+class ApprovalListView(generics.ListAPIView):
+    queryset = User.objects.filter(is_approved=True, is_rejected=False)
+    serializer_class = UserProfileSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+class RejectUserView(generics.UpdateAPIView):
+    queryset = User.objects.all()
+    permission_classes = [permissions.IsAdminUser]
+    
+    def update(self, request, *args, **kwargs):
+        user = self.get_object()
+        reason = request.data.get('reason', 'Raison non spécifiée')
+        
+        user.is_rejected = True
+        user.is_approved = False
+        user.rejection_date = timezone.now()
+        user.rejection_reason = reason
+        user.is_active = False
+        user.save()
+    
+        self.send_rejection_email(user, reason)
+        
+        return Response({
+            'status': 'success',
+            'message': 'Utilisateur rejeté avec succès'
+        })
+    
+    def send_rejection_email(self, user, reason):
+        subject = "Votre demande d'inscription a été rejetée"
+        html_message = render_to_string('user_rejection_email.html', {
+            'user': user,
+            'reason': reason,
+            'year': datetime.now().year
+        })
+        send_mail(
+            subject,
+            strip_tags(html_message),
+            settings.DEFAULT_FROM_EMAIL,
+            [user.email],
+            html_message=html_message
+        )
+
+class RejectedUsersListView(generics.ListAPIView):
+    serializer_class = UserProfileSerializer
+    permission_classes = [permissions.IsAdminUser]
+    
+    def get_queryset(self):
+        return User.objects.filter(is_rejected=True)
+    
 class LogoutView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-
     def post(self, request):
-        try:
-            refresh_token = request.data.get("refresh")
-            if not refresh_token:
-                return Response({"error": "Refresh token est requis"}, status=status.HTTP_400_BAD_REQUEST)
-
-            token = RefreshToken(refresh_token)
-            token.blacklist()  
-            return Response({"message": "Déconnexion réussie"}, status=status.HTTP_205_RESET_CONTENT)
-
-        except Exception as e:
-            return Response({"error": "Échec de la déconnexion"}, status=status.HTTP_400_BAD_REQUEST)    
+        response = Response(
+            {"message": "Successfully logged out"},
+            status=status.HTTP_200_OK
+        )
+        response.delete_cookie('access_token')
+        response.delete_cookie('refresh_token')
+        return response
