@@ -5,6 +5,7 @@ const MedicalProfileDashboard = () => {
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
   const [editMode, setEditMode] = useState({
     email: false,
     address: false,
@@ -16,7 +17,6 @@ const MedicalProfileDashboard = () => {
     phone_number: ''
   });
 
-  // Fetch user data
   useEffect(() => {
     const fetchUserData = async () => {
       try {
@@ -50,24 +50,35 @@ const MedicalProfileDashboard = () => {
   };
 
   const handleSubmit = async (field) => {
-    try {
-      await axios.patch(
-        'http://localhost:8000/api/medical-profile/update/',
-        { [field]: formData[field] },
-        {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-            'Content-Type': 'application/json'
-          }
-        }
-      );
+        setIsUpdating(true);
+        const originalValue = userData[field];
       
-      setUserData(prev => ({ ...prev, [field]: formData[field] }));
-      setEditMode(prev => ({ ...prev, [field]: false }));
-    } catch (err) {
-      setError(err.response?.data?.message || "Erreur lors de la mise à jour");
-    }
-  };
+        try {
+          setEditMode(prev => ({ ...prev, [field]: false }));
+      
+          setUserData(prev => ({ ...prev, [field]: formData[field] }));
+      
+          const response = await axios.patch(
+            'http://localhost:8000/auth/profile/update/',
+            { [field]: formData[field] },
+            {
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
+                'Content-Type': 'application/json'
+              }
+            }
+          );
+      
+          setUserData(response.data);
+      
+        } catch (err) {
+          setUserData(prev => ({ ...prev, [field]: originalValue }));
+          setEditMode(prev => ({ ...prev, [field]: true }));
+          setError(err.response?.data?.message || "Erreur lors de la mise à jour");
+        } finally {
+          setIsUpdating(false);
+        }
+      };
 
   if (loading) {
     return (
@@ -104,11 +115,9 @@ const MedicalProfileDashboard = () => {
     <div className="bg-border-blue-500 min-h-screen p-6">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">Tableau de bord médical</h1>
-        
-        {/* Profile Section with Photo */}
+
         <div className="bg-white rounded-lg shadow-md p-6 mb-6 flex flex-col md:flex-row gap-6">
-          {/* Photo de profil */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 relative">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-blue-100 shadow-md mx-auto md:mx-0">
               <img 
                 src={userData.photo_profil || '/default-profile.jpg'} 
@@ -118,11 +127,11 @@ const MedicalProfileDashboard = () => {
                   e.target.onerror = null; 
                   e.target.src = '/default-profile.jpg'
                 }}
+                key={userData.photo_profil}
               />
             </div>
           </div>
           
-          {/* Profile Info */}
           <div className="flex-grow">
             <div className="flex justify-between items-start mb-4">
               <div>
@@ -143,33 +152,48 @@ const MedicalProfileDashboard = () => {
                 <div>
                   <h3 className="text-sm font-medium text-gray-500">Email</h3>
                   {editMode.email ? (
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        className="border rounded px-2 py-1 w-full"
-                      />
-                      <button 
-                        onClick={() => handleSubmit('email')}
-                        className="bg-blue-500 text-white px-3 py-1 rounded"
-                      >
-                        ✓
-                      </button>
-                      <button 
-                        onClick={() => setEditMode({...editMode, email: false})}
-                        className="bg-gray-200 px-3 py-1 rounded"
-                      >
-                        ✕
-                      </button>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="border rounded px-2 py-1 w-full"
+                          placeholder="Votre email"
+                        />
+                        <div className="flex gap-2">
+                          <button 
+                            onClick={() => handleSubmit('email')}
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors"
+                            disabled={isUpdating}
+                          >
+                            {isUpdating ? '...' : '✓ Valider'}
+                          </button>
+                          <button 
+                            onClick={() => {
+                              setEditMode({...editMode, email: false});
+                              setError(null);
+                            }}
+                            className="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded transition-colors"
+                          >
+                            ✕ Annuler
+                          </button>
+                        </div>
+                      </div>
+                      {error && editMode.email && (
+                        <p className="text-red-500 text-xs mt-1">{error}</p>
+                      )}
                     </div>
                   ) : (
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center">
                       <p className="text-gray-800">{userData.email}</p>
                       <button 
-                        onClick={() => setEditMode({...editMode, email: true})}
-                        className="text-blue-600 hover:text-blue-800 text-sm"
+                        onClick={() => {
+                          setEditMode({...editMode, email: true});
+                          setError(null);
+                        }}
+                        className="text-blue-600 hover:text-blue-800 text-sm underline"
                       >
                         Modifier
                       </button>
@@ -180,33 +204,48 @@ const MedicalProfileDashboard = () => {
                 <div>
                   <h3 className="text-sm font-medium text-gray-500">Adresse</h3>
                   {editMode.address ? (
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="text"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleInputChange}
-                        className="border rounded px-2 py-1 w-full"
-                      />
-                      <button 
-                        onClick={() => handleSubmit('address')}
-                        className="bg-blue-500 text-white px-3 py-1 rounded"
-                      >
-                        ✓
-                      </button>
-                      <button 
-                        onClick={() => setEditMode({...editMode, address: false})}
-                        className="bg-gray-200 px-3 py-1 rounded"
-                      >
-                        ✕
-                      </button>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <input
+                          type="text"
+                          name="address"
+                          value={formData.address}
+                          onChange={handleInputChange}
+                          className="border rounded px-2 py-1 w-full"
+                          placeholder="Votre adresse"
+                        />
+                        <div className="flex gap-2">
+                          <button 
+                            onClick={() => handleSubmit('address')}
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded transition-colors"
+                            disabled={isUpdating}
+                          >
+                            {isUpdating ? '...' : '✓ Valider'}
+                          </button>
+                          <button 
+                            onClick={() => {
+                              setEditMode({...editMode, address: false});
+                              setError(null);
+                            }}
+                            className="bg-gray-200 hover:bg-gray-300 px-3 py-1 rounded transition-colors"
+                          >
+                            ✕ Annuler
+                          </button>
+                        </div>
+                      </div>
+                      {error && editMode.address && (
+                        <p className="text-red-500 text-xs mt-1">{error}</p>
+                      )}
                     </div>
                   ) : (
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center">
                       <p className="text-gray-800">{userData.address || 'Non renseignée'}</p>
                       <button 
-                        onClick={() => setEditMode({...editMode, address: true})}
-                        className="text-blue-600 hover:text-blue-800 text-sm"
+                        onClick={() => {
+                          setEditMode({...editMode, address: true});
+                          setError(null);
+                        }}
+                        className="text-blue-600 hover:text-blue-800 text-sm underline"
                       >
                         Modifier
                       </button>
@@ -216,42 +255,52 @@ const MedicalProfileDashboard = () => {
               </div>
 
               <div className="space-y-4">
-                <div>
-                  <h3 className="text-sm font-medium text-gray-500">Téléphone</h3>
-                  {editMode.phone ? (
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="tel"
-                        name="phone_number"
-                        value={formData.phone_number}
-                        onChange={handleInputChange}
-                        className="border rounded px-2 py-1 w-full"
-                      />
-                      <button 
-                        onClick={() => handleSubmit('phone_number')}
-                        className="bg-blue-500 text-white px-3 py-1 rounded"
-                      >
-                        ✓
-                      </button>
-                      <button 
-                        onClick={() => setEditMode({...editMode, phone: false})}
-                        className="bg-gray-200 px-3 py-1 rounded"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="flex justify-between">
-                      <p className="text-gray-800">{userData.phone_number || 'Non renseigné'}</p>
-                      <button 
-                        onClick={() => setEditMode({...editMode, phone: true})}
-                        className="text-blue-600 hover:text-blue-800 text-sm"
-                      >
-                        Modifier
-                      </button>
-                    </div>
-                  )}
-                </div>
+              <div>
+                        <h3 className="text-sm font-medium text-gray-500">Téléphone</h3>
+                        {editMode.phone ? (
+                        <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                                <input
+                                type="tel"
+                                name="phone_number"
+                                value={formData.phone_number}
+                                onChange={handleInputChange}
+                                className="border rounded px-2 py-1 w-full"
+                                />
+                                <div className="flex gap-2">
+                                <button 
+                                onClick={() => handleSubmit('phone_number')}
+                                disabled={isUpdating}
+                                className="bg-blue-500 text-white px-3 py-1 rounded disabled:opacity-50"
+                                >
+                                {isUpdating ? '...' : 'Valider'}
+                                </button>
+                                <button 
+                                onClick={() => {
+                                setEditMode({...editMode, phone: false});
+                                setError(null);
+                                }}
+                                className="bg-gray-200 px-3 py-1 rounded"
+                                disabled={isUpdating}
+                                >
+                                Annuler
+                                </button>
+                                </div>
+                        </div>
+                        {error && <p className="text-red-500 text-xs">{error}</p>}
+                        </div>
+                        ) : (
+                        <div className="flex justify-between items-center">
+                        <p className="text-gray-800">{userData.phone_number || 'Non renseigné'}</p>
+                        <button 
+                                onClick={() => setEditMode({...editMode, phone: true})}
+                                className="text-blue-600 hover:text-blue-800 text-sm underline"
+                        >
+                                Modifier
+                        </button>
+                        </div>
+                        )}
+                        </div>
 
                 <div>
                   <h3 className="text-sm font-medium text-gray-500">Numéro de licence</h3>
@@ -264,7 +313,7 @@ const MedicalProfileDashboard = () => {
           </div>
         </div>
 
-        {/* Statistics Cards */}
+        {/* statistics  */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
           {stats.map((stat, index) => (
             <div key={index} className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
@@ -275,7 +324,7 @@ const MedicalProfileDashboard = () => {
           ))}
         </div>
 
-        {/* Action Cards */}
+        {/* action  */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold text-gray-800 mb-3">Plateforme de téléconsultation</h3>
