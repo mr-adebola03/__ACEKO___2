@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from datetime import timedelta
 
 Docteur = get_user_model()
 # Create your models here.
@@ -46,3 +47,28 @@ class CustomPatient(models.Model):
 
         def __str__(self):
                 return self.numerodossier 
+        
+class DossierMedical(models.Model):
+        patient = models.ForeignKey(CustomPatient, on_delete=models.CASCADE)
+        date_creation = models.DateTimeField(auto_now_add=True)
+        date_mise_a_jour = models.DateTimeField(auto_now=True)
+        resume_medical = models.TextField(blank=True)
+        
+        class Meta:
+                verbose_name = "Dossier Medical"
+                ordering = ['-date_creation']
+                
+        def __str__(self):
+                return f"Dossier Medical de {self.patient.numerodossier}"
+        
+class Consultation(models.Model):
+        dossier = models.ForeignKey(DossierMedical, on_delete=models.CASCADE, related_name="consultations")
+        docteur = models.ForeignKey(Docteur, on_delete=models.SET_NULL, null=True, related_name="consultations")
+        date_consultation = models.DateTimeField()
+        motif = models.CharField(max_length=200)
+        observations = models.TextField(blank=True)
+        rapport_genere = models.BooleanField(default=False)
+        
+        def __str__(self):
+                return f"Consultation {self.dossier.patient.numerodossier} - {self.date_consultation}"
+        
