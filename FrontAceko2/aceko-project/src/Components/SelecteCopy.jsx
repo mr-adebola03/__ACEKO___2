@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Selecte = ({label, value, name, id, onChange, options, className = ''}) => {
+const SelecteCopy = ({label, value, name, id, onChange, options, className = ''}) => {
   return (
     <div className={`mb-3 ${className}`}>
       <label htmlFor={id} className='form-label'>{label}</label>
@@ -9,7 +9,7 @@ const Selecte = ({label, value, name, id, onChange, options, className = ''}) =>
         id={id} 
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
-        className="form-select " 
+        className="form-select px-2 py-[10px]" 
         aria-label={label || 'Select dropdown'}
       >
         <option value="" disabled>Sélectionnez une option</option>
@@ -23,4 +23,4 @@ const Selecte = ({label, value, name, id, onChange, options, className = ''}) =>
   )
 }
 
-export default Selecte
+export default SelecteCopy

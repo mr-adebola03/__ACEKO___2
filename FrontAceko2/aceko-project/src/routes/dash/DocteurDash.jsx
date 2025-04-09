@@ -10,6 +10,7 @@ import DocteurAppointments from './DocteurDash/DocteurAppointments'
 import DocteurNotificationSpecial from './DocteurDash/DocteurNotificationSpecial'
 import DocteurAllNotification from './DocteurDash/DocteurAllNotification'
 import DocteurProfile from './DocteurDash/DocteurProfile'
+import PatientProfil from './DocteurDash/Patient/PatientProfil'
 
 const DocteurDash = () => {
 
@@ -31,6 +32,7 @@ const DocteurDash = () => {
                     <Route path='/notification' element={<DocteurNotificationSpecial/>} />
                     <Route path='/all-notification' element={<DocteurAllNotification/>} />
                     <Route path='/my-profile' element={<DocteurProfile/>} />
+                    <Route path='/patient-profile' element={<PatientProfil/>} />
                 </Routes>
             </DocMain>
         </div>
