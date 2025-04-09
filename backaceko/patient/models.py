@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from datetime import timedelta
 from django.utils import timezone
+from django.contrib.postgres.fields import ArrayField
 
 Docteur = get_user_model()
 # Create your models here.
@@ -53,7 +54,8 @@ class DossierMedical(models.Model):
         patient = models.ForeignKey(CustomPatient, on_delete=models.CASCADE)
         date_creation = models.DateTimeField(auto_now_add=True)
         date_mise_a_jour = models.DateTimeField(auto_now=True)
-        resume_medical = models.TextField(blank=True)
+        antecedents = models.JSONField(default=list)  
+        traitements = models.JSONField(default=list)
         
         class Meta:
                 verbose_name = "Dossier Medical"
