@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'background_task',
     'auth_core',
-    'patient'
+    'patient',
+    'workflows',
 ]
 
 REST_FRAMEWORK = {
