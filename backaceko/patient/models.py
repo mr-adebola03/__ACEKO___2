@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 from datetime import timedelta
+from django.utils import timezone
 
 Docteur = get_user_model()
 # Create your models here.
@@ -72,3 +73,29 @@ class Consultation(models.Model):
         def __str__(self):
                 return f"Consultation {self.dossier.patient.numerodossier} - {self.date_consultation}"
         
+class RendezVous(models.Model):
+        STATUT = [
+                ('PLANIFIE', 'Planifié'),
+                ('CONFIRME', 'Confirmé'),
+                ('ANNULE', 'Annulé'),
+                ('TERMINE', 'Terminé'),
+        ]
+        dossier = models.ForeignKey('DossierMedical', on_delete=models.CASCADE, related_name="rendez_vous")
+        docteur = models.ForeignKey(Docteur, on_delete=models.SET_NULL, null=True, related_name="rendez_vous")
+        date_rdv = models.DateTimeField()
+        statut = models.CharField(max_length=20, choices=STATUT, default='PLANIFIE')
+        rapport = models.TextField(blank=True)
+        
+        def save(self, *args, **kwargs):
+                super().save(*args, **kwargs)
+                if self.statut == 'PLANIFIE':
+                        self.programmer_rappel()
+        
+        def programmer_rappel(self):
+                from .tasks import envoyer_rappel_rdv
+                scheduled_time = self.date_rdv - timedelta(days=1)
+                if scheduled_time > timezone.now():
+                        envoyer_rappel_rdv(self.id, schedule=scheduled_time)
+        
+        def __str__(self):
+                return f"RDV {self.dossier.patient.numerodossier} - {self.date_rdv}"
