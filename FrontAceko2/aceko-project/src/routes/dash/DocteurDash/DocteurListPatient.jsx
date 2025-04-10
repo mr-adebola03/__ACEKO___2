@@ -3,7 +3,7 @@ import Content from '../../../admin/Content'
 import { FaDisease, FaLungsVirus, FaSkull, FaSyringe, FaUserPlus } from 'react-icons/fa'
 import Title from '../../../admin/Title'
 import { Link } from 'react-router-dom'
-import Table from '../../../Components/Tabs/Table'
+import TabsUseless from '../../../Components/Tabs/TabsUseless'
 
 const DocteurListPatient = () => {
 
@@ -80,7 +80,7 @@ const DocteurListPatient = () => {
             </div>
           </div>
           <div className='table-responsive'>
-            <Table thead={columns} tbody={users} show={true} />
+            <TabsUseless href={"/docteur/patient-profile/"} thead={columns} tbody={users} show={true} />
           </div>
         </div>
       </div>

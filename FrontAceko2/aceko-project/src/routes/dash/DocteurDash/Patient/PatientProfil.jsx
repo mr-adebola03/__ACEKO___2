@@ -3,27 +3,13 @@ import Content from '../../../../admin/Content'
 import { Link } from 'react-router-dom'
 import { IoIosArrowRoundBack } from "react-icons/io"
 import Title from '../../../../admin/Title'
+import PatientHeader from '../../../../Components/Bar/PatientHeader'
 
 const PatientProfil = () => {
   return (
     <Content>
         <div className='flex flex-col'>
-            <div className='flex justify-between items-center px-4 mb-4'>
-                <Link to="/docteur/all-patients"><IoIosArrowRoundBack className='text-3xl cursor-pointer' /></Link>
-                <div>
-                    <ul className='flex gap-4 items-center text-slate-400 font-semibold'>
-                        <li className=''>
-                            <Link to="/docteur/all-patients">Historique Consultations</Link>
-                        </li>
-                        <li>
-                            <Link to="/docteur/all-patients">Résultats Examens</Link>
-                        </li>
-                        <li>
-                            <Link to="/docteur/all-patients">Données Médicaux</Link>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <PatientHeader/>
             <div className='px-4 flex'>
                 <div className='w-[30%] mb-2 py-3 px-5 bg-slate-300 shadow-md rounded-lg'>
                     <div className='flex justify-center mb-3'><Title>Profil Patient</Title></div>

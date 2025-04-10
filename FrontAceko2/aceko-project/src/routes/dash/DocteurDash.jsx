@@ -11,6 +11,17 @@ import DocteurNotificationSpecial from './DocteurDash/DocteurNotificationSpecial
 import DocteurAllNotification from './DocteurDash/DocteurAllNotification'
 import DocteurProfile from './DocteurDash/DocteurProfile'
 import PatientProfil from './DocteurDash/Patient/PatientProfil'
+import HistoriqueConsultation from './DocteurDash/Patient/HistoriqueConsultation'
+import ResultatsAnalyses from './DocteurDash/Patient/ResultatsAnalyses'
+import DonneMedical from './DocteurDash/Patient/DonneMedical'
+import PatientConsultation from './DocteurDash/Patient/PatientConsultation'
+import ShowPatientAnalyse from './DocteurDash/Patient/ShowPatientAnalyse'
+import AddNewConsultation from './DocteurDash/Patient/AddNewConsultation'
+import ListeAntecedentsMedicaux from './DocteurDash/Patient/ListeAntecedentsMedicaux'
+import ListeAnalyse from './DocteurDash/Patient/ListeAnalyse'
+import ListeTraitementsEnCours from './DocteurDash/Patient/ListeTraitementsEnCours'
+import ShowPatientTraitment from './DocteurDash/Patient/ShowPatientTraitment'
+import AddNewAnalyseResultat from './DocteurDash/Patient/AddNewAnalyseResultat'
 
 const DocteurDash = () => {
 
@@ -33,6 +44,17 @@ const DocteurDash = () => {
                     <Route path='/all-notification' element={<DocteurAllNotification/>} />
                     <Route path='/my-profile' element={<DocteurProfile/>} />
                     <Route path='/patient-profile' element={<PatientProfil/>} />
+                    <Route path='/patient-historique-consultation' element={<HistoriqueConsultation/>} />
+                    <Route path='/patient-donne-medical' element={<DonneMedical/>} />
+                    <Route path='/patient-resultats-analyse' element={<ResultatsAnalyses/>} />
+                    <Route path='/patient-historique-consultation/consultation/' element={<PatientConsultation/>}/>
+                    <Route path='/patient-resultats-analyse/show-patient-analyse/' element={<ShowPatientAnalyse/>}/>
+                    <Route path='/patient-historique-consultation/create-new-consultation/' element={<AddNewConsultation/>}/>
+                    <Route path='/patient-donne-medical/antecedants' element={<ListeAntecedentsMedicaux/>}/>
+                    <Route path='/patient-donne-medical/analyse' element={<ListeAnalyse/>}/>
+                    <Route path='/patient-donne-medical/traitements-en-cours' element={<ListeTraitementsEnCours/>}/>
+                    <Route path='/patient-donne-medical/traitements-en-cours/show-traitement-info' element={<ShowPatientTraitment/>}/>
+                    <Route path='/patient-resultats-analyse/create-new-analyse-resultat' element={<AddNewAnalyseResultat/>} />
                 </Routes>
             </DocMain>
         </div>
