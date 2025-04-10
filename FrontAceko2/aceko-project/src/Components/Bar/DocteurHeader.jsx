@@ -127,7 +127,7 @@ const DocteurHeader = ({ toogleSidebar, isMenuOpen }) => {
             <div className='w-6 h-6 rounded-full cursor-pointer'>
             <Link to='/docteur/my-profile'>  
               <img 
-                src={user?.photo_profil} 
+                src={user?.photo_profil || '/src/assets/king.jpg'} 
                 alt='Profil utilisateur' 
                 className='w-full h-full rounded-full '
               />
