@@ -48,7 +48,7 @@ const DocteurDash = () => {
                     <Route path='/notification' element={<DocteurNotificationSpecial/>} />
                     <Route path='/all-notification' element={<DocteurAllNotification/>} />
                     <Route path='/my-profile' element={<DocteurProfile/>} />
-                    <Route path='/patient-profile' element={<PatientProfil/>} />
+                    <Route path='/patient-profile/:id' element={<PatientProfil/>} />
                     <Route path='/patient-historique-consultation' element={<HistoriqueConsultation/>} />
                     <Route path='/patient-donne-medical' element={<DonneMedical/>} />
                     <Route path='/patient-resultats-analyse' element={<ResultatsAnalyses/>} />
