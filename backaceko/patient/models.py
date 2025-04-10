@@ -28,7 +28,7 @@ class CustomPatient(models.Model):
         date_naissance = models.DateField(blank=True, null=True)
         adresse = models.CharField(max_length=200, blank=True, null=True)
         ville = models.CharField(max_length=100, blank=True, null=True)
-        contact = models.CharField(max_length=10)
+        phone_number = models.CharField(max_length=10)
         contact_urgence = models.CharField(max_length=10, blank=True, null=True)
         stade_mrc = models.CharField(max_length=20, choices=STATE_MRC, blank=True)
         docteur = models.ForeignKey(Docteur, on_delete=models.SET_NULL, null=True, blank=True)

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'django_apscheduler',
     'corsheaders',
     'background_task',
     'auth_core',
@@ -172,6 +173,9 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # Frontend's URL
     "http://127.0.0.1:5173",
 ]
+
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"  
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR / 'media')
