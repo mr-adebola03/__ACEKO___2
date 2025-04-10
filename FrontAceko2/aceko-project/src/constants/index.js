@@ -6,6 +6,8 @@ import {IoIosStats,IoIosSettings,IoIosPerson,IoIosPersonAdd,IoIosEyeOff,IoIosLog
 import {FaChartBar,FaCalendarAlt,FaFacebookMessenger,FaUsersCog,FaUserPlus,} from "react-icons/fa";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { FiBookOpen } from "react-icons/fi";
+import { IoCheckmarkDone } from "react-icons/io5";
+import { MdSmsFailed } from "react-icons/md";
 
 import user01 from "../assets/user01.png";
 import user02 from "../assets/user02.png";
@@ -19,11 +21,6 @@ export const docteurs = [
     text: "Dashboard",
   },
   {
-    href: "/docteur/create-patient-document",
-    icon: FaUserPlus,
-    text: "Create Doc",
-  },
-  {
     href: "/docteur/all-patients",
     icon: FiBookOpen,
     text: "ALL Patients",
@@ -32,6 +29,24 @@ export const docteurs = [
     href: "/docteur/my-appointments",
     icon: LuCalendarPlus,
     text: "My Appointments",
+  },
+]
+
+export const laborantin = [
+  {
+    href: "/laborantin/dashboard",
+    icon: HiOutlineViewGrid,
+    text: "Dashboard",
+  },
+  {
+    href: "/laborantin/analyse-done",
+    icon: IoCheckmarkDone,
+    text: "Analyse Fait",
+  },
+  {
+    href: "/laborantin/analyse-failed",
+    icon: MdSmsFailed,
+    text: "Analyse Non Fait",
   },
 ]
 

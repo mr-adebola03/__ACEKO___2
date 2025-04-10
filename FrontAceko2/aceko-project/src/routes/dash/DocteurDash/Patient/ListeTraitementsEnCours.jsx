@@ -34,12 +34,12 @@ const ListeTraitementsEnCours = () => {
                         />
                         <i className='fas fa-search absolute left-2 px-1 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
                         </div>
-                        <Link to={"/docteur/create-patient-document"} className=' flex justify-center items-center w-fit bg-blue-400 text-slate-100 text-lg py-1 px-2 rounded-lg'> 
+                        <Link to={"/docteur/patient-donne-medical/traitements-en-cours/new-traitment"} className=' flex justify-center items-center w-fit bg-blue-400 text-slate-100 text-lg py-1 px-2 rounded-lg'> 
                             <FaUserPlus className='mr-2'/>
                             New Traitement
                         </Link>
                     </div>
-                    <TabsUseless thead={columnsTraitements} tbody={traitements} show={true} hrefSee={"/docteur/patient-donne-medical/traitements-en-cours/show-traitement-info"} hrefUpdate={"#"} />
+                    <TabsUseless thead={columnsTraitements} tbody={traitements} show={true} hrefSee={"/docteur/patient-donne-medical/traitements-en-cours/show-traitement-info"} hrefUpdate={"/docteur/patient-donne-medical/traitements-en-cours/new-traitment"} />
                 </div>
             </div>
         </Content>
