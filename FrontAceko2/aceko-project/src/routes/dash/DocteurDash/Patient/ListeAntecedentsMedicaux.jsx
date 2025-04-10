@@ -1,7 +1,6 @@
 import React from 'react'
 import Content from '../../../../admin/Content'
 import PatientHeader2 from '../../../../Components/Bar/PatientHeader2'
-import PatientHeader from '../../../../Components/Bar/PatientHeader'
 import { Link } from 'react-router'
 import { FaUserPlus } from 'react-icons/fa'
 import TabsUseless from '../../../../Components/Tabs/TabsUseless'
@@ -35,12 +34,12 @@ const ListeAntecedentsMedicaux = () => {
                     />
                     <i className='fas fa-search absolute left-2 px-1 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
                     </div>
-                    <Link to={"/docteur/create-patient-document"} className=' flex justify-center items-center w-fit bg-blue-400 text-slate-100 text-lg py-1 px-2 rounded-lg'> 
+                    <Link to={"/docteur/patient-donne-medical/antecedants/new-antecedent"} className=' flex justify-center items-center w-fit bg-blue-400 text-slate-100 text-lg py-1 px-2 rounded-lg'> 
                         <FaUserPlus className='mr-2'/>
                         New Antecedents
                     </Link>
                 </div>
-                <TabsUseless thead={columnsAntecedents} tbody={antecedents} show={true} href={"/"} />
+                <TabsUseless thead={columnsAntecedents} tbody={antecedents} show={true} hrefSee={"/docteur/patient-donne-medical/antecedants/show"} hrefUpdate={"/docteur/patient-donne-medical/antecedants/new-antecedent"} />
                 </div>
             </div>
         </Content>
