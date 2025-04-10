@@ -71,7 +71,7 @@ const DocteurListPatient = () => {
       render: (value) => new Date(value).toLocaleDateString('fr-FR')
     },
     { key: 'adresse', label: 'Adresse' },
-    { key: 'contact', label: 'Contact' },
+    { key: 'phone_number', label: 'Contact' },
   ];
 
   if (loading) {
