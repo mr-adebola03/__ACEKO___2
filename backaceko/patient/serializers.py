@@ -11,12 +11,21 @@ class CustomPatientSerializer(serializers.ModelSerializer):
                         'email', 
                         'civilite', 'date_naissance', 
                         'adresse', 'ville', 
-                        'contact', 'contact_urgence', 
+                        'phone_number', 'contact_urgence',
                         'stade_mrc',
                         'numerodossier',
                         'date_creation',
                 ]
                 read_only_fields = ('id', 'numerodossier')
+
+        def create(self, validated_data):
+                patient = CustomPatient.objects.create(**validated_data)
+
+                DossierMedical.objects.create(
+                        patient=patient,
+                        antecedents=[],
+                        traitements=[]
+                )
                 
         def get_docteur_info(self, obj):
                 return {
