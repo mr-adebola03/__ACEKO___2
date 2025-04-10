@@ -56,7 +56,8 @@ Créer un fichier .env dans le dossier backend et ajouter :
 python manage.py migrate
 py manage.py load_laboratoire    
 python manage.py load_specialites
-python manage.py createsuperuser  
+python manage.py createsuperuser
+python manage.py planifier_taches  
 python seed.py
 python manage.py runserver
 

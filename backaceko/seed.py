@@ -99,7 +99,7 @@ def create_patients(docteur):
             "date_naissance": "1980-02-15",
             "adresse": "Ste Rita",
             "ville": "Cotonou",
-            "contact": "0166656885",
+            "phone_number": "0166656885",
             "contact_urgence": None,
             "stade_mrc": "state2"
         },
@@ -111,7 +111,7 @@ def create_patients(docteur):
             "date_naissance": "1975-08-22",
             "adresse": "Akpakpa",
             "ville": "Cotonou",
-            "contact": "97865432",
+            "phone_number": "97865432",
             "contact_urgence": "95432178",
             "stade_mrc": "state1"
         },
@@ -123,7 +123,7 @@ def create_patients(docteur):
             "date_naissance": "1968-11-30",
             "adresse": "Godomey",
             "ville": "Abomey-Calavi",
-            "contact": "52143678",
+            "phone_number": "52143678",
             "contact_urgence": None,
             "stade_mrc": "state3"
         },
@@ -135,7 +135,7 @@ def create_patients(docteur):
             "date_naissance": "1985-04-18",
             "adresse": "Dantokpa",
             "ville": "Cotonou",
-            "contact": "93456781",
+            "phone_number": "93456781",
             "contact_urgence": "91234567",
             "stade_mrc": "state2"
         },
@@ -147,7 +147,7 @@ def create_patients(docteur):
             "date_naissance": "1972-07-05",
             "adresse": "Avotrou",
             "ville": "Porto-Novo",
-            "contact": "98765432",
+            "phone_number": "98765432",
             "contact_urgence": None,
             "stade_mrc": "state4"
         },
@@ -159,7 +159,7 @@ def create_patients(docteur):
             "date_naissance": "1990-01-25",
             "adresse": "Cadjehoun",
             "ville": "Cotonou",
-            "contact": "52143679",
+            "phone_number": "52143679",
             "contact_urgence": "52143670",
             "stade_mrc": "state1"
         },
@@ -171,7 +171,7 @@ def create_patients(docteur):
             "date_naissance": "1965-09-12",
             "adresse": "Ganhi",
             "ville": "Cotonou",
-            "contact": "93456782",
+            "phone_number": "93456782",
             "contact_urgence": None,
             "stade_mrc": "state5"
         },
@@ -183,7 +183,7 @@ def create_patients(docteur):
             "date_naissance": "1988-06-08",
             "adresse": "Fidjrosse",
             "ville": "Cotonou",
-            "contact": "52143680",
+            "phone_number": "52143680",
             "contact_urgence": "52143681",
             "stade_mrc": "state2"
         },
@@ -195,7 +195,7 @@ def create_patients(docteur):
             "date_naissance": "1978-03-17",
             "adresse": "Agla",
             "ville": "Cotonou",
-            "contact": "93456783",
+            "phone_number": "93456783",
             "contact_urgence": None,
             "stade_mrc": "state3"
         },
@@ -207,7 +207,7 @@ def create_patients(docteur):
             "date_naissance": "1983-12-24",
             "adresse": "Akassato",
             "ville": "Abomey-Calavi",
-            "contact": "52143682",
+            "phone_number": "52143682",
             "contact_urgence": "52143683",
             "stade_mrc": "state1"
         },
@@ -219,7 +219,7 @@ def create_patients(docteur):
             "date_naissance": "1960-05-19",
             "adresse": "Missessin",
             "ville": "Porto-Novo",
-            "contact": "93456784",
+            "phone_number": "93456784",
             "contact_urgence": None,
             "stade_mrc": "state4"
         },
@@ -231,7 +231,7 @@ def create_patients(docteur):
             "date_naissance": "1970-10-31",
             "adresse": "Vèdoko",
             "ville": "Cotonou",
-            "contact": "52143684",
+            "phone_number": "52143684",
             "contact_urgence": "52143685",
             "stade_mrc": "state3"
         },
@@ -243,7 +243,7 @@ def create_patients(docteur):
             "date_naissance": "1955-07-22",
             "adresse": "Zogbo",
             "ville": "Cotonou",
-            "contact": "93456785",
+            "phone_number": "93456785",
             "contact_urgence": None,
             "stade_mrc": "state5"
         },
@@ -255,7 +255,7 @@ def create_patients(docteur):
             "date_naissance": "1982-04-15",
             "adresse": "Avrankou",
             "ville": "Porto-Novo",
-            "contact": "52143686",
+            "phone_number": "52143686",
             "contact_urgence": "52143687",
             "stade_mrc": "state2"
         },
@@ -267,7 +267,7 @@ def create_patients(docteur):
             "date_naissance": "1968-11-08",
             "adresse": "Ekpè",
             "ville": "Porto-Novo",
-            "contact": "93456786",
+            "phone_number": "93456786",
             "contact_urgence": None,
             "stade_mrc": "state4"
         },
@@ -279,7 +279,7 @@ def create_patients(docteur):
             "date_naissance": "1975-02-28",
             "adresse": "Sèmè-Kpodji",
             "ville": "Porto-Novo",
-            "contact": "52143688",
+            "phone_number": "52143688",
             "contact_urgence": "52143689",
             "stade_mrc": "state1"
         },
@@ -291,7 +291,7 @@ def create_patients(docteur):
             "date_naissance": "1980-09-14",
             "adresse": "Agbangnizoun",
             "ville": "Abomey",
-            "contact": "93456787",
+            "phone_number": "93456787",
             "contact_urgence": None,
             "stade_mrc": "state3"
         },
@@ -303,7 +303,7 @@ def create_patients(docteur):
             "date_naissance": "1992-06-03",
             "adresse": "Allada",
             "ville": "Allada",
-            "contact": "52143690",
+            "phone_number": "52143690",
             "contact_urgence": "52143691",
             "stade_mrc": "state2"
         },
@@ -315,7 +315,7 @@ def create_patients(docteur):
             "date_naissance": "1958-12-20",
             "adresse": "Ouidah",
             "ville": "Ouidah",
-            "contact": "93456788",
+            "phone_number": "93456788",
             "contact_urgence": None,
             "stade_mrc": "state5"
         },
@@ -327,7 +327,7 @@ def create_patients(docteur):
             "date_naissance": "1987-07-11",
             "adresse": "Bohicon",
             "ville": "Bohicon",
-            "contact": "52143692",
+            "phone_number": "52143692",
             "contact_urgence": "52143693",
             "stade_mrc": "state1"
         }
