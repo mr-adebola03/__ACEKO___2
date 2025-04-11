@@ -5,9 +5,12 @@ import { IoIosArrowRoundBack } from "react-icons/io"
 const PatientHeader = () => {
   return (
     <div className='flex justify-between items-center px-4 mb-4'>
-        <Link to="/docteur/patient-profile"><IoIosArrowRoundBack className='text-3xl cursor-pointer' /></Link>
+        <Link to="/docteur/all-patients"><IoIosArrowRoundBack className='text-3xl cursor-pointer' /></Link>
         <div>
         <ul className='flex gap-4 items-center text-slate-400 font-semibold'>
+            <li className=''>
+                <Link to="/docteur/patient-suivi-medical">Suivi Médical</Link>
+            </li>
             <li className=''>
                 <Link to="/docteur/patient-historique-consultation">Historique Consultations</Link>
             </li>
