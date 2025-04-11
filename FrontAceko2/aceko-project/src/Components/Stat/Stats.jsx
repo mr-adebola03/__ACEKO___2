@@ -13,12 +13,12 @@ const Stats = () => {
       try {
         // Récupérer les données en parallèle
         const [pendingResponse, approvedResponse] = await Promise.all([
-          axios.get('http://localhost:8000/auth/admin/pending-approvals/', {
+          axios.get('https://aceko.onrender.com/auth/admin/pending-approvals/', {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }
           }),
-          axios.get('http://localhost:8000/auth/admin/users-approvals/', {
+          axios.get('https://aceko.onrender.com/auth/admin/users-approvals/', {
             headers: {
               Authorization: `Bearer ${localStorage.getItem('access_token')}`
             }

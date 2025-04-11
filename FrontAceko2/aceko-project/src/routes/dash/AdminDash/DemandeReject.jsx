@@ -14,7 +14,7 @@ const RejectedUsersList = () => {
 
   const fetchRejectedUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/auth/admin/users/rejected/', {
+      const response = await axios.get('https://aceko.onrender.com/auth/admin/users/rejected/', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }

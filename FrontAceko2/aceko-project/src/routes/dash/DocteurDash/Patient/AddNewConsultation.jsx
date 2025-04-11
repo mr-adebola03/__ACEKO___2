@@ -212,7 +212,7 @@ const AddNewConsultation = () => {
         };
 
         try {
-            const response = await fetch('http://localhost:8000/doc-patient/consultations/create', {
+            const response = await fetch('https://aceko.onrender.com/doc-patient/consultations/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

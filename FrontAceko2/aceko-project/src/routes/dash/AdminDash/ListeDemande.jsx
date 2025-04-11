@@ -17,7 +17,7 @@ const ListeDemande = () => {
 
   const fetchPendingUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/auth/admin/pending-approvals/', {
+      const response = await axios.get('https://aceko.onrender.com/auth/admin/pending-approvals/', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }

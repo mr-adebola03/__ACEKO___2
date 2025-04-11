@@ -22,7 +22,7 @@ const DocteurHeader = ({ toogleSidebar, isMenuOpen }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/auth/profile/', {
+        const response = await axios.get('https://aceko.onrender.com/auth/profile/', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }

@@ -15,7 +15,7 @@ const AdminValidation = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/auth/admin/users/${id}/`, {
+        const response = await axios.get(`https://aceko.onrender.com/auth/admin/users/${id}/`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('access_token')}`
           }
@@ -37,7 +37,7 @@ const handleApprove = async () => {
     setLoading(true)
     try {
       await axios.put(
-        `http://localhost:8000/auth/admin/users/${id}/approve/`,
+        `https://aceko.onrender.com/auth/admin/users/${id}/approve/`,
         {},
         {
           headers: {
@@ -66,7 +66,7 @@ const handleReject = async () => {
 
     try {
       await axios.put(
-        `http://localhost:8000/auth/admin/users/${id}/reject/`,
+        `https://aceko.onrender.com/auth/admin/users/${id}/reject/`,
         { reason: rejectionReason },
         {
           headers: {

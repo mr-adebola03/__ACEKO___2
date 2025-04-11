@@ -20,7 +20,7 @@ const Dash = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8000/auth/logout/', {}, {
+      await axios.post('https://aceko.onrender.com/auth/logout/', {}, {
         withCredentials: true
       });
     } finally {

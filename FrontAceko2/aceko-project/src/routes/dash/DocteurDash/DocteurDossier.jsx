@@ -64,7 +64,7 @@ const DocteurDossier = () => {
       };
 
       const response = await axios.post(
-        'http://localhost:8000/doc-patient/patients/create/',
+        'https://aceko.onrender.com/doc-patient/patients/create/',
         formData,
         config
       );
