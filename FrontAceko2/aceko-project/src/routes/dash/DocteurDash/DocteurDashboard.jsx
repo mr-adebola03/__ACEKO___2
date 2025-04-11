@@ -6,7 +6,7 @@ import { FaPaperclip, FaPlay, FaRegCheckCircle } from "react-icons/fa";
 import { FaFileLines } from 'react-icons/fa6';
 
 const DocteurDashboard = () => {
-  return (
+  return ( 
     <Content>
       <div className='flex  px-1'>
         <div className="w-[78%] flex flex-col mr-2">

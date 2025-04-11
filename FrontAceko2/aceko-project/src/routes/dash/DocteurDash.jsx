@@ -27,6 +27,7 @@ import ShowAntecedent from './DocteurDash/Patient/ShowAntecedent'
 import AddNewAnalyse from './DocteurDash/Patient/AddNewAnalyse'
 import ShowAnalyse from './DocteurDash/Patient/ShowAnalyse'
 import SuiviMedical from './DocteurDash/Patient/SuiviMedical'
+import AddNewTraitment from './DocteurDash/Patient/AddNewTraitment'
 
 const DocteurDash = () => {
 
@@ -65,6 +66,7 @@ const DocteurDash = () => {
                     <Route path='/patient-donne-medical/analyse/new-analyse' element={<AddNewAnalyse/>} />
                     <Route path='/patient-donne-medical/analyse/show-analyse' element={<ShowAnalyse/>} />
                     <Route path='/patient-suivi-medical' element={<SuiviMedical/>} />
+                    <Route path='/patient-donne-medical/traitements-en-cours/new-traitment' element={<AddNewTraitment/>} />
                 </Routes>
             </DocMain>
         </div>

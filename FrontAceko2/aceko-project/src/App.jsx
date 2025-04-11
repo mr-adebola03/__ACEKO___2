@@ -13,6 +13,7 @@ import SignupStep1 from './routes/SignupStep1';
 import SignupStep2 from './routes/SignupStep2';
 import { SignupProvider } from './contexts/SignupContext';
 import PrivateRoute from './Components/PrivateRoute'
+import LaborantinDash from './routes/dash/LaborantinDash'
 
 
 function App() {
@@ -33,6 +34,11 @@ function App() {
           <Route path='/admin/*' element={
               // <PrivateRoute> 
                 <AdminDash/>
+              // </PrivateRoute>
+          }/>
+          <Route path='/laborantin/*' element={
+              // <PrivateRoute> 
+              <LaborantinDash/>
               // </PrivateRoute>
           }/>
           <Route path='/docteur/*' element={

@@ -8,7 +8,7 @@ const ShowAnalyse = () => {
     return (
         <Content>
             <div className=''>
-                <Link to="/docteur/patient-resultats-analyse"><IoIosArrowRoundBack className='text-3xl cursor-pointer mb-2' /></Link>
+                <Link to="/docteur/patient-donne-medical/analyse"><IoIosArrowRoundBack className='text-3xl cursor-pointer mb-2' /></Link>
                 <div className='mb-4 px-2'><Title>Show Analyse </Title></div>
                 <div className='flex'>
                     <div className='bg-slate-100 shadow-lg rounded-lg py-4 h-fit w-[70%] px-6 mr-2'>
