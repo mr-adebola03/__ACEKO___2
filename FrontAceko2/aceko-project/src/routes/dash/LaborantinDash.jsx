@@ -7,6 +7,9 @@ import LaborantinDashboard from './LaboDash/LaborantinDashboard'
 import LaborantinAnalyseDone from './LaboDash/LaborantinAnalyseDone'
 import LaborantinAnalyseFailed from './LaboDash/LaborantinAnalyseFailed'
 import LaborantinHeader from '../../Components/Bar/LaborantinHeader'
+import LaboNewAnalyse from '../dash/LaboDash/LaboNewAnalyse'
+import LaboSeeAnalyseAnswer from './LaboDash/LaboSeeAnalyseAnswer'
+import LaboAnalyseAnswerUpdate from './LaboDash/LaboAnalyseAnswerUpdate'
 
 
 const LaborantinDash = () => {
@@ -25,6 +28,9 @@ const LaborantinDash = () => {
                     <Route path='/dashboard' element={<LaborantinDashboard/>} />
                     <Route path='/analyse-done' element={<LaborantinAnalyseDone/>} />
                     <Route path='/analyse-failed' element={<LaborantinAnalyseFailed/>} />
+                    <Route path='/new-analyse-answer' element={<LaboNewAnalyse/>} />
+                    <Route path='/see-analyse-answer' element={<LaboSeeAnalyseAnswer/>} />
+                    <Route path='/analyse-answer-update' element={<LaboAnalyseAnswerUpdate/>} />
                 </Routes>
             </LaborantinMain>
         </div>

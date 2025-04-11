@@ -1,23 +1,26 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Content from '../../../admin/Content'
 import Title from '../../../admin/Title'
 import { FaRegCheckCircle } from 'react-icons/fa'
+import {FaUserPlus } from 'react-icons/fa'
 import TabsUseless from '../../../Components/Tabs/TabsUseless'
 
 const LaborantinDashboard = () => {
 
-  const analyses = [
-    { id: 1, name: 'Glycémie ', date: '28/10/2025', type_analyse: "Sang",patient: "Jean Doe", observation: 'Hausse du taux de glucose'},
-    { id: 2, name: 'Glycémie ', date: '28/10/2025', type_analyse: "Sang",patient: "Jean Doe", observation: 'Hausse du taux de glucose'},
+  const analyseDone = [
+    { id: 1, name: 'Analyse urine',patient_name: 'John Doe', date: '28/10/2025',resultat : 'Positif', remarque: "Anormalie dans vos resultats",  rapport: "L'on est forcé de constater la hause du taux de glucose du patient 002 qui pourrait etre dangereux pour cette derniere"},
+    { id: 1, name: 'Analyse urine',patient_name: 'John Doe', date: '28/10/2025',resultat : 'Positif', remarque: "Anormalie dans vos resultats",  rapport: "L'on est forcé de constater la hause du taux de glucose du patient 002 qui pourrait etre dangereux pour cette derniere"},
   ]
 
-  const columnsAnalyses = [
+  const columns = [
     { key: 'id', label: 'ID' },
     { key: 'name', label: 'Name' },
-    { key: 'type_analyse', label: 'Type Analyse' },
-    { key: 'patient', label: 'Patient' },
+    { key: 'patient_name', label: 'Patient' },
     { key: 'date', label: 'Date' },
-    { key: 'observation', label: 'Observation' },
+    { key: 'resultat', label: 'Resultat' },
+    { key: 'remarque', label: 'Remarque' },
+    { key: 'rapport', label: 'Rapport' },
   ]
   return (
     <Content>
@@ -61,7 +64,25 @@ const LaborantinDashboard = () => {
         </div>
       </div>
       <div className='table-responsive px-4'>
-        <TabsUseless thead={columnsAnalyses} tbody={analyses} hrefSee={""} hrefUpdate={""} />
+        <div className='flex flex-col'> 
+          <div className='bg-slate-100 rounded-lg shadow-md w-full p-4 min-h-[150px] max-h-fit mb-2'>
+            <div className='flex justify-between items-center px-2 mb-3'>
+              <div className=' relative max-md:hidden lg:inline-block max-sm:hidden'>
+                <input
+                  type='text'
+                  className='rounded-lg py-2 pl-10  bg-slate-300 border-none focus:border-slate-400 focus:border-solid outline-none'
+                  placeholder='search'
+                />
+                <i className='fas fa-search absolute left-2 px-1 top-1/2 transform -translate-y-1/2 text-gray-400'></i>
+              </div>
+              <Link to={"/laborantin/new-analyse-answer"} className=' flex justify-center items-center w-fit bg-blue-400 text-slate-100 text-lg py-1 px-2 rounded-lg'> 
+                <FaUserPlus className='mr-2'/>
+                Add New Analyse 
+              </Link>
+            </div>
+            <TabsUseless thead={columns} tbody={analyseDone} show={true} hrefSee={"/laborantin/see-analyse-answer"} hrefUpdate={"/laborantin/analyse-answer-update"} />
+          </div>
+        </div>
       </div>
     </Content>
   )
