@@ -68,7 +68,7 @@ const HistoriqueConsultation = () => {
   useEffect(() => {
     const fetchConsultations = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/doc-patient/consultations/');
+        const response = await axios.get('https://aceko.onrender.com/doc-patient/consultations/');
         setConsultations(response.data); 
         setLoading(false);
       } catch (err) {

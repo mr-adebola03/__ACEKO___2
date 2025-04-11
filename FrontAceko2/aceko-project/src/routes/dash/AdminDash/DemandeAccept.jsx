@@ -16,7 +16,7 @@ const DemandeAccept = () => {
 
   const fetchPendingUsers = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/auth/admin/users-approvals/', {
+      const response = await axios.get('https://aceko.onrender.com/auth/admin/users-approvals/', {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('access_token')}`
         }

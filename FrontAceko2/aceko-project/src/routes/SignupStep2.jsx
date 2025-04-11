@@ -12,7 +12,7 @@ const SignupStep2 = () => {
   
   // Configuration API
   const api = axios.create({
-    baseURL: 'http://localhost:8000/auth',
+    baseURL: 'https://aceko.onrender.com/auth',
   });
 
   const [formData, setFormData] = useState({

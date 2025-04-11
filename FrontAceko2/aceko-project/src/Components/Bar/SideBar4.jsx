@@ -12,7 +12,7 @@ const SideBar4 = ({ isSidebarOpen }) => {
   const handleLogout = async () => {
     setIsLoggingOut(true)
     try {
-      await axios.post('http://localhost:8000/auth/logout/', {}, {
+      await axios.post('https://aceko.onrender.com/auth/logout/', {}, {
         withCredentials: true
       })
     } catch (error) {

@@ -78,8 +78,8 @@ const PatientProfil = () => {
         };
 
         const [patientResponse, dossierResponse] = await Promise.all([
-          axios.get(`http://localhost:8000/doc-patient/patients/${id}/`, config),
-          axios.get(`http://localhost:8000/doc-patient/dossiers/${id}/`, config)
+          axios.get(`https://aceko.onrender.com/doc-patient/patients/${id}/`, config),
+          axios.get(`https://aceko.onrender.com/doc-patient/dossiers/${id}/`, config)
         ]);
 
         setPatient(patientResponse.data);
@@ -108,7 +108,7 @@ const PatientProfil = () => {
       }
 
       const response = await axios.patch(
-        `http://localhost:8000/doc-patient/dossiers/${id}/`,
+        `https://aceko.onrender.com/doc-patient/dossiers/${id}/`,
         { antecedents: updatedAntecedents },
         {
           headers: {
@@ -132,7 +132,7 @@ const PatientProfil = () => {
       try {
         const token = localStorage.getItem('access_token');
         const response = await axios.get(
-          `http://localhost:8000/doc-patient/rendezvous/?dossier__patient=${id}`,
+          `https://aceko.onrender.com/doc-patient/rendezvous/?dossier__patient=${id}`,
           {
             headers: { 'Authorization': `Bearer ${token}` }
           }
@@ -160,7 +160,7 @@ const PatientProfil = () => {
       const updatedAntecedents = dossier.antecedents.filter((_, i) => i !== index);
 
       const response = await axios.patch(
-        `http://localhost:8000/doc-patient/dossiers/${id}/`,
+        `https://aceko.onrender.com/doc-patient/dossiers/${id}/`,
         { antecedents: updatedAntecedents },
         {
           headers: {
@@ -195,7 +195,7 @@ const PatientProfil = () => {
       }
 
       const response = await axios.patch(
-        `http://localhost:8000/doc-patient/dossiers/${id}/`,
+        `https://aceko.onrender.com/doc-patient/dossiers/${id}/`,
         { traitements: updatedTraitements },
         {
           headers: {
@@ -220,7 +220,7 @@ const PatientProfil = () => {
       const updatedTraitements = dossier.traitements.filter((_, i) => i !== index);
 
       const response = await axios.patch(
-        `http://localhost:8000/doc-patient/dossiers/${id}/`,
+        `https://aceko.onrender.com/doc-patient/dossiers/${id}/`,
         { traitements: updatedTraitements },
         {
           headers: {

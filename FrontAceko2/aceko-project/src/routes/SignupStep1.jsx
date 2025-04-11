@@ -17,7 +17,7 @@ const SignupStep1 = () => {
   });
 
   const api = axios.create({
-    baseURL: 'http://localhost:8000/auth/register/',
+    baseURL: 'https://aceko.onrender.com/auth/register/',
   });
 
   const checkEmailExists = async (email) => {

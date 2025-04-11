@@ -46,11 +46,11 @@ const DoctorCalendar = () => {
       try {
         const token = localStorage.getItem('access_token');
         
-        const rdvResponse = await axios.get('http://localhost:8000/doc-patient/rendezvous/', {
+        const rdvResponse = await axios.get('https://aceko.onrender.com/doc-patient/rendezvous/', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
-        const patientsResponse = await axios.get('http://localhost:8000/doc-patient/patients/', {
+        const patientsResponse = await axios.get('https://aceko.onrender.com/doc-patient/patients/', {
           headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -84,7 +84,7 @@ const DoctorCalendar = () => {
           };
       
           const response = await axios.post(
-            'http://localhost:8000/doc-patient/rendezvous/',
+            'https://aceko.onrender.com/doc-patient/rendezvous/',
             payload,
             {
               headers: { 

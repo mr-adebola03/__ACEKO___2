@@ -20,7 +20,7 @@ const MedicalProfileDashboard = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/auth/profile/', {
+        const response = await axios.get('https://aceko.onrender.com/auth/profile/', {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('access_token')}`
           }
@@ -59,7 +59,7 @@ const MedicalProfileDashboard = () => {
           setUserData(prev => ({ ...prev, [field]: formData[field] }));
       
           const response = await axios.patch(
-            'http://localhost:8000/auth/profile/update/',
+            'https://aceko.onrender.com/auth/profile/update/',
             { [field]: formData[field] },
             {
               headers: {
