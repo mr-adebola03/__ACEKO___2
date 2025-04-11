@@ -176,8 +176,8 @@ CORS_ORIGINS_ALLOW_ALL_ = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "https://aceko-2-mr-adebola03s-projects.vercel.app/",  # Frontend's URL
-    "https://aceko-2-mr-adebola03s-projects.vercel.app/",
+    "http://localhost:5173",  # Frontend's URL
+    "http://127.0.0.1:5173",
 ]
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"  
