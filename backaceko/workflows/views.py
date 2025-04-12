@@ -5,7 +5,7 @@ from rest_framework.permissions import IsAuthenticated
 from patient.models import CustomPatient
 from patient.permissions import IsDoctorOwner
 from .models import Workflow, TacheWorkflow, PatientWorkflow
-from .serializers import WorkflowSerializer, TacheWorkflowSerializer, PatientWorkflowSerializer
+from .serializers import TacheWorkflowDetailSerializer, WorkflowSerializer, TacheWorkflowSerializer, PatientWorkflowSerializer
 from .utils import planifier_tache
 
 from rest_framework import generics, permissions
@@ -31,22 +31,49 @@ class WorkflowDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Workflow.objects.filter(docteur=self.request.user)
     
-class TacheWorkflowCreateView(generics.CreateAPIView):
+class TacheBaseView:
+    permission_classes = [permissions.IsAuthenticated]
     serializer_class = TacheWorkflowSerializer
-    permission_classes = [IsAuthenticated]
-
-    def perform_create(self, serializer):
-        tache = serializer.save()
-        planifier_tache(tache)  
-
-class TacheWorkflowListView(generics.ListAPIView):
-    serializer_class = TacheWorkflowSerializer
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        workflow_id = self.kwargs['workflow_id']
-        return TacheWorkflow.objects.filter(workflow_id=workflow_id)
+        queryset = TacheWorkflow.objects.all()
+        
+        workflow_id = self.request.query_params.get('workflow_id')
+        if workflow_id:
+            queryset = queryset.filter(workflow__id=workflow_id)
+            
+        type_tache = self.request.query_params.get('type_tache')
+        if type_tache:
+            queryset = queryset.filter(type_tache=type_tache)
+            
+        return queryset
 
+class TacheCreateView(TacheBaseView, generics.CreateAPIView):
+    def perform_create(self, serializer):
+        workflow_id = self.kwargs.get('workflow_id')
+        workflow = get_object_or_404(Workflow, pk=workflow_id)
+        serializer.save(workflow=workflow)
+
+class TacheListView(TacheBaseView, generics.ListAPIView):
+    def get_serializer_class(self):
+        if self.request.query_params.get('detailed') == 'true':
+            return TacheWorkflowDetailSerializer
+        return super().get_serializer_class()
+
+class TacheDetailView(TacheBaseView, generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = TacheWorkflowDetailSerializer
+
+    def get_object(self):
+        obj = get_object_or_404(self.get_queryset(), pk=self.kwargs['pk'])
+        self.check_object_permissions(self.request, obj)
+        return obj
+
+class TachesByWorkflowView(TacheBaseView, generics.ListAPIView):
+    serializer_class = TacheWorkflowDetailSerializer
+    
+    def get_queryset(self):
+        workflow_id = self.kwargs['workflow_id']
+        return TacheWorkflow.objects.filter(workflow__id=workflow_id)
 class PatientWorkflowCreateView(generics.CreateAPIView):
     serializer_class = PatientWorkflowSerializer
     permission_classes = [IsAuthenticated]
