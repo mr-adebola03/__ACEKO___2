@@ -80,17 +80,3 @@ class RendezVousSerializer(serializers.ModelSerializer):
     def get_patient_nom_complet(self, obj):
         return f"{obj.dossier.patient.first_name} {obj.dossier.patient.last_name}"
 
-
-class ConsultationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Consultation
-        fields = ['id', 'dossier', 'rendez_vous', 'date_consultation', 'motif', 'observations', 'rapport_genere']
-        read_only_fields = ['docteur']
-
-    def create(self, validated_data):
-        request = self.context.get('request')
-        user = request.user
-        if not user.agent_sante:
-            raise serializers.ValidationError("Seuls les agents de santé peuvent créer des consultations.")
-        validated_data['docteur'] = user
-        return super().create(validated_data)

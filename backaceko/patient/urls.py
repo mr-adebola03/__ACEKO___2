@@ -5,11 +5,8 @@ from .views import (
     CustomPatientListView,
     CustomPatientCreateView,
     CustomPatientDetailView,
-    CustomPatientUpdateView, DossierMedicalUpdateView, DossierMedicalDetailView, RendezVousViewSet, ConsultationViewSet
+    CustomPatientUpdateView, DossierMedicalUpdateView, DossierMedicalDetailView, RendezVousViewSet
 )
-router = DefaultRouter()
-router.register(r'consultations', ConsultationViewSet)
-
 urlpatterns = [
     path('patients/', CustomPatientListView.as_view(), name='patient-list'),
     path('patients/create/', CustomPatientCreateView.as_view(), name='patient-create'),
