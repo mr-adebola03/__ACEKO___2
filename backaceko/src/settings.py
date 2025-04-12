@@ -73,11 +73,16 @@ SIMPLE_JWT = {
     'USER_ID_CLAIM': 'user_id',
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
     'TOKEN_TYPE_CLAIM': 'token_type',
+    'AUTH_COOKIE': 'access_token',  
+    'AUTH_COOKIE_DOMAIN': None,     
+    'AUTH_COOKIE_SECURE': True,     
+    'AUTH_COOKIE_HTTP_ONLY': True,  
+    'AUTH_COOKIE_SAMESITE': 'None',
 }
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware'
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -86,6 +91,37 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://aceko-2-mr-adebola03s-projects.vercel.app",
+    "https://aceko-frontend.vercel.app",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",  
+]
+
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+CORS_EXPOSE_HEADERS = [
+    'Content-Type',
+    'Authorization',
+    'X-CSRFToken'  
+]
+
+SESSION_COOKIE_SAMESITE = 'None'  
+SESSION_COOKIE_SECURE = True      
+CSRF_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SECURE = True
 
 ROOT_URLCONF = 'src.urls'
 
@@ -167,36 +203,34 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-AUTH_USER_MODEL = 'auth_core.CustomUser'
 
 AUTH_USER_MODEL = 'auth_core.CustomUser'
 
-CORS_ORIGINS_ALLOW_ALL_ = False
+# CORS_ALLOW_ALL_ORIGINS = False  
+# CORS_ALLOW_CREDENTIALS = True
 
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = [
+#     "https://aceko-2-mr-adebola03s-projects.vercel.app",
+#     "https://aceko-frontend.vercel.app",  # Ajoutez tous vos domaines
+#     "http://localhost:3000",              # Pour le développement
+# ]
 
-CORS_ALLOWED_ORIGINS = [
-    "https://aceko-2-mr-adebola03s-projects.vercel.app",
-    "https://aceko-frontend.vercel.app",  # Ajoutez tous vos domaines
-    "http://localhost:3000",              # Pour le développement
-]
+# CORS_ALLOWED_ORIGIN_REGEXES = [
+#     r"^https://\w+\.aceko\.vercel\.app$",
+# ]
 
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://\w+\.aceko\.vercel\.app$",
-]
-
-CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
-CORS_ALLOW_HEADERS = [
-    'accept',
-    'accept-encoding',
-    'authorization',
-    'content-type',
-    'dnt',
-    'origin',
-    'user-agent',
-    'x-csrftoken',
-    'x-requested-with',
-]
+# CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
+# CORS_ALLOW_HEADERS = [
+#     'accept',
+#     'accept-encoding',
+#     'authorization',
+#     'content-type',
+#     'dnt',
+#     'origin',
+#     'user-agent',
+#     'x-csrftoken',
+#     'x-requested-with',
+# ]
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"  
 APSCHEDULER_RUN_NOW_TIMEOUT = 25  
