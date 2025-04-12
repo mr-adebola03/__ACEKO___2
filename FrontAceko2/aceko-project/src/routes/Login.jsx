@@ -58,14 +58,14 @@ const Login = () => {
         case 'admin':
           navigate('/admin/stat');
           break;
-        // case 'docteur':
-        //   navigate('/docteur/dashboard');
-        //   break;
-        // case 'laborantin':
-        //   navigate('/lab-dashboard');
-        //   break;
+        case 'docteur':
+          navigate('/docteur/dashboard');
+          break;
+        case 'laborantin':
+          navigate('/lab-dashboard');
+          break;
         default:
-          navigate('/home');
+          navigate('/');
       }
       
     } catch (err) {
