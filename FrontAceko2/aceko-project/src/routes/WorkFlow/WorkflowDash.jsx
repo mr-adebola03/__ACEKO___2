@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import { Routes,Route } from 'react-router-dom'
-import LaborantinMain from '../../Laborantin/LaborantinMain'
-import SideBar4 from '../../Components/Bar/SideBar4'
+import LaborantinMain from '../../../Laborantin/LaborantinMain'
+import SideBar4 from '../../../Components/Bar/SideBar4'
 import LaborantinDashboard from './LaboDash/LaborantinDashboard'
-import LaborantinHeader from '../../Components/Bar/LaborantinHeader'
-import LaboNewAnalyse from '../dash/LaboDash/LaboNewAnalyse'
+import LaborantinHeader from '../../../Components/Bar/LaborantinHeader'
+import LaboNewAnalyse from '../LaboDash/LaboNewAnalyse'
 import LaboSeeAnalyseAnswer from './LaboDash/LaboSeeAnalyseAnswer'
 import LaboAnalyseAnswerUpdate from './LaboDash/LaboAnalyseAnswerUpdate'
 
 
-const LaborantinDash = () => {
+const WorkflowDash = () => {
 
     const [isSidebarOpen,setIsSidebarOpen] = useState(false)
     const toogleSidebar = ()=>{
@@ -33,4 +33,4 @@ const LaborantinDash = () => {
     )
 }
 
-export default LaborantinDash
+export default WorkflowDash

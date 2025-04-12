@@ -8,6 +8,8 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import { FiBookOpen } from "react-icons/fi";
 import { IoCheckmarkDone } from "react-icons/io5";
 import { MdSmsFailed } from "react-icons/md";
+import { IoGitNetworkSharp } from "react-icons/io5";
+import { FaTasks } from "react-icons/fa";
 
 import user01 from "../assets/user01.png";
 import user02 from "../assets/user02.png";
@@ -29,6 +31,16 @@ export const docteurs = [
     href: "/docteur/my-appointments",
     icon: LuCalendarPlus,
     text: "My Appointments",
+  },
+  {
+    href: "/docteur/workflow",
+    icon: IoGitNetworkSharp,
+    text: "Workflow",
+  },
+  {
+    href: "/docteur/workflow/task",
+    icon: FaTasks,
+    text: "Workflow Task",
   },
 ]
 

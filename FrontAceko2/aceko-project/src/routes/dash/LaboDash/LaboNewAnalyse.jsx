@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import { InputCopy } from '../../../Components/InputCopy'
 import SelecteCopy from '../../../Components/SelecteCopy'
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import Content from '../../../admin/Content';
 import { Link } from 'react-router-dom';
 import { IoIosArrowRoundBack } from "react-icons/io"
 
 const LaboNewAnalyse = () => {
+  
+  
+  const location = useLocation()
+  
+  const existingData = location.state?.analyseData || null
+
+  const isEditMode = location.pathname.includes('update')
 
   const patientOptions = [
     { value: '1', label: 'John Doe' },
@@ -21,7 +28,7 @@ const LaboNewAnalyse = () => {
     { value: '5', label: 'Examen Urinaire' },
   ]
 
-  const [analyseData,setAnalyseData] = useState({
+  const [analyseData,setAnalyseData] = useState(existingData?.donnee_analyse || {
     creatinine: '',
     uree: '',
     calcium: '',
@@ -33,7 +40,7 @@ const LaboNewAnalyse = () => {
     albumine:''
   })
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState(existingData || {
     name:'',
     patient: '',
     analyse:'',
@@ -68,10 +75,11 @@ const LaboNewAnalyse = () => {
     e.preventDefault();
     const patientData = {
       ...formData,
+      donnee_analyse: analyseData
     }
     console.log('Données du formulaire:', patientData);
     console.log('Data Analyse  du formulaire:', analyseData);
-    navigateavigate('/laborantin/dashboard'); 
+    navigate('/laborantin/dashboard'); 
   }
 
   const renderAnalyse = ()=>{
@@ -130,10 +138,11 @@ const LaboNewAnalyse = () => {
     }
   }
 
+
   return (
     <Content>
       <div>
-        <Link to="/laborantin/dashboard" className='flex justify-between items-center mb-4'><IoIosArrowRoundBack className='text-3xl cursor-pointer' /> <p className='w-[60%] text-xl text-slate-500 font-medium'>Add New Analyse Result</p></Link>
+        <Link to="/laborantin/dashboard" className='flex justify-between items-center mb-4'><IoIosArrowRoundBack className='text-3xl cursor-pointer' /> <p className='w-[60%] text-xl text-slate-500 font-medium'>{isEditMode ? 'Modifier Analyse' : 'Nouvelle Analyse'}</p></Link>
         <div className='w-[90%] p-4 bg-slate-100 rounded-md shadow-md mx-auto mb-4'>
           <h2 className='font-bold text-gray-700 text-2xl text-center mb-4'>Results Analyse</h2>
           <form onSubmit={handleSubmit} className='px-2'>
@@ -295,18 +304,6 @@ const PlaquettesInput = ({plaquette,onPlaquetteChange})=>(
   </div>
 )
 
-// const PlaquettesInput = ({ plaquette, onPlaquetteChange }) => (
-//   <div className='mb-3'>
-//     <InputCopy 
-//       type="number"
-//       label="Plaquette (mg/dL)"  
-//       placeholder=".2" 
-//       value={plaquette} 
-//       onChange={onPlaquetteChange}
-//       required
-//     />
-//   </div>
-// )
 
 const LeucocytesInput = ({ leucocytes, onLeucocytesChange }) => (
   <div className='mb-3'>

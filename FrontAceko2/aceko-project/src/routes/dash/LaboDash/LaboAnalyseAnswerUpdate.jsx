@@ -1,8 +1,9 @@
 import React from 'react'
+import LaboNewAnalyse from './LaboNewAnalyse'
 
 const LaboAnalyseAnswerUpdate = () => {
   return (
-    <div>LaboAnalyseAnswerUpdate</div>
+    <LaboNewAnalyse/>
   )
 }
 

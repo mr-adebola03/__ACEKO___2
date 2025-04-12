@@ -28,6 +28,11 @@ import AddNewAnalyse from './DocteurDash/Patient/AddNewAnalyse'
 import ShowAnalyse from './DocteurDash/Patient/ShowAnalyse'
 import SuiviMedical from './DocteurDash/Patient/SuiviMedical'
 import AddNewTraitment from './DocteurDash/Patient/AddNewTraitment'
+import WorkflowDashboard from './WorkFlow/workflowDashboard'
+import AddWorkflow from './WorkFlow/AddWorkflow'
+import ShowWorkflow from './WorkFlow/ShowWorkflow'
+import AddTask from './WorkFlow/Task/AddTask'
+import TaskDashboard from './WorkFlow/Task/TaskDashboard'
 
 const DocteurDash = () => {
 
@@ -67,6 +72,11 @@ const DocteurDash = () => {
                     <Route path='/patient-donne-medical/analyse/show-analyse' element={<ShowAnalyse/>} />
                     <Route path='/patient-suivi-medical' element={<SuiviMedical/>} />
                     <Route path='/patient-donne-medical/traitements-en-cours/new-traitment' element={<AddNewTraitment/>} />
+                    <Route path='/workflow' element={<WorkflowDashboard/>} />
+                    <Route path='/workflow/new-workflow' element={<AddWorkflow/>} />
+                    <Route path='/workflow/show-workflow' element={<ShowWorkflow/>} />
+                    <Route path='/workflow/task' element={<TaskDashboard/>} />
+                    <Route path='/workflow/add-task' element={<AddTask/>} />
                 </Routes>
             </DocMain>
         </div>

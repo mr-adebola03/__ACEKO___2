@@ -64,8 +64,11 @@ const Login = () => {
         // case 'laborantin':
         //   navigate('/lab-dashboard');
         //   break;
+        case 'laborantin':
+          navigate('/lab-dashboard');
+          break;
         default:
-          navigate('/home');
+          navigate('/');
       }
       
     } catch (err) {

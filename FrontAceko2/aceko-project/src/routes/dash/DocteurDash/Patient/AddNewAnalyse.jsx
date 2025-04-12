@@ -11,7 +11,7 @@ const AddNewAnalyse = () => {
         motif:'',
         status:'',
         date: '',
-      })
+    })
 
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
