@@ -4,7 +4,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .serializers import CustomPatientSerializer, DossierMedicalSerializer, RendezVousSerializer, ConsultationSerializer
+
+from auth_core.models import CustomUser
+from .serializers import CustomPatientSerializer, DossierMedicalSerializer, RendezVousSerializer, \
+    ConsultationSerializer, ConsultationCreateSerializer, PatientForConsultationSerializer
 from .models import CustomPatient, DossierMedical, RendezVous, Consultation
 from .permissions import IsDoctorOwner  
 
@@ -132,15 +135,16 @@ class RendezVousViewSet(viewsets.ModelViewSet):
         print("Erreurs serializer:", serializer.errors)
         return super().create(request, *args, **kwargs)
 
-class ConsultationListView(generics.ListCreateAPIView):
-    queryset = Consultation.objects.all()
-    serializer_class = ConsultationSerializer
 
-class ConsultationCreateView(generics.CreateAPIView):
-    queryset = Consultation.objects.all()
+class ConsultationViewSet(viewsets.ModelViewSet):
     serializer_class = ConsultationSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [permissions.IsAuthenticated]
 
-class ConsultationDetailView(generics.RetrieveAPIView):
-    queryset = Consultation.objects.all()
-    serializer_class = ConsultationSerializer
+    def get_queryset(self):
+        user = self.request.user
+        if user.agent_sante:
+            return Consultation.objects.filter(docteur=user)
+        return Consultation.objects.none()
+
+    def perform_create(self, serializer):
+        serializer.save(docteur=self.request.user)

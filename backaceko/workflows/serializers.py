@@ -14,12 +14,9 @@ class PatientWorkflowSerializer(serializers.ModelSerializer):
         model = PatientWorkflow
         fields = ['id', 'patient', 'workflow', 'date_assignation']
 
-class WorkflowSerializer(serializers.ModelSerializer):
-    createur = serializers.StringRelatedField()  
-    laborantin = serializers.StringRelatedField(allow_null=True)  
-    taches = TacheWorkflowSerializer(many=True, read_only=True)  
-    patients = PatientWorkflowSerializer(many=True, read_only=True, source='patients')  
 
+class WorkflowSerializer(serializers.ModelSerializer):
     class Meta:
         model = Workflow
-        fields = ['id', 'nom', 'description', 'createur', 'laborantin', 'stade_mrc', 'date_creation', 'taches', 'patients']
+        fields = '__all__'
+        read_only_fields = ['docteur', 'date_creation']

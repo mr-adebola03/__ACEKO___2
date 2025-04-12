@@ -3,22 +3,33 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from patient.models import CustomPatient
+from patient.permissions import IsDoctorOwner
 from .models import Workflow, TacheWorkflow, PatientWorkflow
 from .serializers import WorkflowSerializer, TacheWorkflowSerializer, PatientWorkflowSerializer
 from .utils import planifier_tache
+
+from rest_framework import generics, permissions
+from django.shortcuts import get_object_or_404
+from rest_framework import viewsets
+
 
 class WorkflowListCreateView(generics.ListCreateAPIView):
     queryset = Workflow.objects.all()
     serializer_class = WorkflowSerializer
     permission_classes = [IsAuthenticated]
 
+    def get_queryset(self):
+        return Workflow.objects.filter(docteur=self.request.user)
+
     def perform_create(self, serializer):
-        serializer.save(createur=self.request.user)
+        serializer.save(docteur=self.request.user)
 
 class WorkflowDetailView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Workflow.objects.all()
     serializer_class = WorkflowSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsDoctorOwner]
+
+    def get_queryset(self):
+        return Workflow.objects.filter(docteur=self.request.user)
     
 class TacheWorkflowCreateView(generics.CreateAPIView):
     serializer_class = TacheWorkflowSerializer

@@ -24,6 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('auth_core.urls')),
     path('doc-patient/', include('patient.urls')),
+    path('workflow/', include('workflows.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
