@@ -22,7 +22,7 @@ function App() {
  
   return (
     <>
-      <div className='min-h-screen flex flex-col bg-slate-200'>
+      <div className='min-h-screen flex flex-col bg-slate-100'>
         {hideNavbar && <NavBar/>}
         <SignupProvider>
         <Routes>
