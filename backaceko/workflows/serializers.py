@@ -16,9 +16,7 @@ class TacheWorkflowSerializer(serializers.ModelSerializer):
             'description',
             'intervalle',
             'seuil_critique',
-            'message_alerte',
-            'completed',
-            'date_echeance'
+            'message_alerte'
         ]
         read_only_fields = ('id',)
         extra_kwargs = {
