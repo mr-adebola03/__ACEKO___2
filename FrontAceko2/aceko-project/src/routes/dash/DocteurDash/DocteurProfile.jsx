@@ -120,12 +120,12 @@ const MedicalProfileDashboard = () => {
           <div className="flex-shrink-0 relative">
             <div className="w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-4 border-blue-100 shadow-md mx-auto md:mx-0">
               <img 
-                src={userData.photo_profil || '/src/assets/king.jpg'} 
+                src={userData.photo_profil || '/src/assets/inco.jpg'} 
                 alt={`Photo de ${userData.username}`}
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   e.target.onerror = null; 
-                  e.target.src = '/src/assets/king.jpg';
+                  e.target.src = '/src/assets/inco.jpg';
                 }}
                 key={userData.photo_profil}
               />

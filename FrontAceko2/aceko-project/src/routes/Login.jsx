@@ -61,6 +61,9 @@ const Login = () => {
         case 'docteur':
           navigate('/docteur/dashboard');
           break;
+        // case 'laborantin':
+        //   navigate('/lab-dashboard');
+        //   break;
         case 'laborantin':
           navigate('/lab-dashboard');
           break;

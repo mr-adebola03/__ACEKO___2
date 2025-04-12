@@ -83,11 +83,9 @@ const HistoriqueConsultation = () => {
 
   const columns = [
     { key: 'id', label: 'ID' },
-    { key: 'name', label: 'Nom' },
-    { key: 'date', label: 'Date' },
+    { key: 'date', label: 'Consultation du :' },
     { key: 'motif', label: 'Motif' },
     { key: 'observation', label: 'Observation' },
-    { key: 'rapport', label: 'Rapport' },
   ];
 
   if (loading) {
