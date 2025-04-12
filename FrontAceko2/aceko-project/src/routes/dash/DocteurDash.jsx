@@ -28,11 +28,11 @@ import AddNewAnalyse from './DocteurDash/Patient/AddNewAnalyse'
 import ShowAnalyse from './DocteurDash/Patient/ShowAnalyse'
 import SuiviMedical from './DocteurDash/Patient/SuiviMedical'
 import AddNewTraitment from './DocteurDash/Patient/AddNewTraitment'
-import WorkflowDashboard from './WorkFlow/WorkflowDashboard'
 import AddWorkflow from './WorkFlow/AddWorkflow'
 import ShowWorkflow from './WorkFlow/ShowWorkflow'
 import AddTask from './WorkFlow/Task/AddTask'
 import TaskDashboard from './WorkFlow/Task/TaskDashboard'
+import WorkflowDashboard from './WorkFlow/workflowDashboard'
 
 const DocteurDash = () => {
 
