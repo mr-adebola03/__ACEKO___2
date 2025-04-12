@@ -171,12 +171,31 @@ AUTH_USER_MODEL = 'auth_core.CustomUser'
 
 AUTH_USER_MODEL = 'auth_core.CustomUser'
 
-CORS_ORIGINS_ALLOW_ALL_ = True
+CORS_ORIGINS_ALLOW_ALL_ = False
 
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "aceko-2-mr-adebola03s-projects.vercel.app",  
+    "https://aceko-2-mr-adebola03s-projects.vercel.app",
+    "https://aceko-frontend.vercel.app",  # Ajoutez tous vos domaines
+    "http://localhost:3000",              # Pour le développement
+]
+
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://\w+\.aceko\.vercel\.app$",
+]
+
+CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
 ]
 
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"  
