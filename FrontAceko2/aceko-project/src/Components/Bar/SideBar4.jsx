@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { docteurs, laborantin } from '../../constants'
+import { laborantin } from '../../constants'
 import DocteurItems from './DocteurItems'
 import { IoIosLogOut } from 'react-icons/io'
 import axios from 'axios'

@@ -58,9 +58,9 @@ const Login = () => {
         case 'admin':
           navigate('/admin/stat');
           break;
-        // case 'docteur':
-        //   navigate('/docteur/dashboard');
-        //   break;
+        case 'docteur':
+          navigate('/docteur/dashboard');
+          break;
         // case 'laborantin':
         //   navigate('/lab-dashboard');
         //   break;
