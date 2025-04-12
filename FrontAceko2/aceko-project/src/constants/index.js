@@ -11,6 +11,8 @@ import { MdSmsFailed } from "react-icons/md";
 import { IoGitNetworkSharp } from "react-icons/io5";
 import { FaTasks } from "react-icons/fa";
 import { FaUserDoctor } from "react-icons/fa6";
+import { IoAnalytics } from "react-icons/io5";
+import {FaUserPlus } from 'react-icons/fa'
 
 import user01 from "../assets/user01.png";
 import user02 from "../assets/user02.png";
@@ -32,6 +34,11 @@ export const docteurs = [
     href: "/docteur/patient-historique-consultation",
     icon: FaUserDoctor,
     text: "Consultation",
+  },
+  {
+    href: "/docteur/patient-resultats-analyse",
+    icon: IoAnalytics,
+    text: "Résultats Analyse",
   },
   {
     href: "/docteur/my-appointments",
@@ -57,15 +64,20 @@ export const laborantin = [
     text: "Dashboard",
   },
   {
-    href: "/laborantin/analyse-done",
-    icon: IoCheckmarkDone,
-    text: "Analyse Fait",
+    href: "/laborantin/new-analyse-answer",
+    icon: FaUserPlus,
+    text: "Add Analyse"
   },
-  {
-    href: "/laborantin/analyse-failed",
-    icon: MdSmsFailed,
-    text: "Analyse Non Fait",
-  },
+  // {
+  //   href: "/laborantin/new-analyse-answer",
+  //   icon: IoCheckmarkDone,
+  //   text: "Nouvelle Analyse",
+  // },
+  // {
+  //   href: "/laborantin/see-analyse-answer",
+  //   icon: MdSmsFailed,
+  //   text: "Analyse Non Fait",
+  // },
 ]
 
 export const links = [

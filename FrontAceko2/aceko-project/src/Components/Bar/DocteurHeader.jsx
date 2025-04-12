@@ -51,6 +51,14 @@ const DocteurHeader = ({ toogleSidebar, isMenuOpen }) => {
         return <h3 className='text-xl text-slate-500 font-medium'>My Patient</h3>
       case '/docteur/my-appointments':
         return <h3 className='text-xl text-slate-500 font-medium'>My Appointments</h3>
+      case '/docteur/patient-historique-consultation':
+        return <h3 className='text-xl text-slate-500 font-medium'>Historique Consultation</h3>
+      case '/docteur/patient-resultats-analyse':
+        return <h3 className='text-xl text-slate-500 font-medium'>Résultats Analyse</h3>
+      case '/docteur/workflow':
+        return <h3 className='text-xl text-slate-500 font-medium'>WorkFlow</h3>
+      case '/docteur/workflow/task':
+        return <h3 className='text-xl text-slate-500 font-medium'>Task</h3>
       default:
         return null
     }
