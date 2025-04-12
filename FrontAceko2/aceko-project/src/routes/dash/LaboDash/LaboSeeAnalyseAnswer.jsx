@@ -36,13 +36,13 @@ const LaboSeeAnalyseAnswer = () => {
       analyse: renderAnalyse('1'),
       date: '',
       donnee_analyse: {
-        creatinine: '',
+        creatinine: '12',
         uree: '',
-        calcium: '',
+        calcium: '1.2',
         phosphore:'',
         pth:'',
         hemoglobine:'',
-        leucocyte:'',
+        leucocyte:'10',
         plaquette:'',
         albumine:''
       },
@@ -74,40 +74,22 @@ const LaboSeeAnalyseAnswer = () => {
                     </div>
                     <div className='flex justify-between items-center mb-2'>
                       <h3>Date</h3>
-                      <p>{resultat.date}</p>
+                      <p>{resultat.date || 'Non Spécifié'}</p>
                     </div>
                   </div>
-                  
-                  {/* <div >
-                    <h3 className='text-center mb-2'>Données Analyse </h3>
-                    <div className='flex justify-between items-center mb-2'>
-                      <h3>Créatinine</h3>
-                      <p>.3 mg/L</p>
-                    </div>
-                    <div className='flex justify-between items-center mb-2'>
-                      <h3>Urée</h3>
-                      <p>.2mg/L</p>
-                    </div>
-                    <div className='flex justify-between items-center mb-2'>
-                      <h3>Date</h3>
-                      <p>25 Juillet 2024</p>
-                    </div>
-                  </div> */}
-                  
-                  <div >
-                    <h3 className='text-center mb-2'>Données Analyse </h3>
-                    <div className='flex justify-between items-center mb-2'>
-                      <h3>Créatinine</h3>
-                      <p>.3 mg/L</p>
-                    </div>
-                    <div className='flex justify-between items-center mb-2'>
-                      <h3>Urée</h3>
-                      <p>.2mg/L</p>
-                    </div>
-                    {/* <div className='flex justify-between items-center mb-2'>
-                      <h3>Date</h3>
-                      <p>25 Juillet 2024</p>
-                    </div> */}
+                  <h3 className='text-center mb-2 font-semibold text-xl text-slate-800'>Les analyses</h3>
+                  <div className='flex justify-between flex-wrap items-center px-4'>
+                    {
+                      Object.entries(resultat.donnee_analyse).filter(([_, value]) => value !== '')
+                      .map(([key, value]) =>(
+                        <div key={key} className='flex justify-between items-center p-2 mb-2 w-[30%] '>
+                          <h3 className='font-medium'>
+                            {key.charAt(0).toUpperCase() + key.slice(1)} : 
+                          </h3>
+                          <p>{value} mg/L</p> 
+                        </div>
+                      ))
+                    }
                   </div>
                   <div className="mb-4 p-2">
                     <label className="block text-lg font-medium text-gray-700 mb-2">
