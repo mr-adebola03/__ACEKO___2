@@ -97,8 +97,9 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://aceko-2-mr-adebola03s-projects.vercel.app",
     "https://aceko-frontend.vercel.app",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",  
+    "https://aceko-2.vercel.app/",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",  
 ]
 
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
