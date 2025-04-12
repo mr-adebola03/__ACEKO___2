@@ -74,7 +74,7 @@ const DocteurDash = () => {
                     <Route path='/patient-donne-medical/traitements-en-cours/new-traitment' element={<AddNewTraitment/>} />
                     <Route path='/workflow' element={<WorkflowDashboard/>} />
                     <Route path='/workflow/new-workflow' element={<AddWorkflow/>} />
-                    <Route path='/workflow/show-workflow' element={<ShowWorkflow/>} />
+                    <Route path='/workflow/show-workflow/:id' element={<ShowWorkflow/>} />
                     <Route path='/workflow/task' element={<TaskDashboard/>} />
                     <Route path='/workflow/add-task' element={<AddTask/>} />
                 </Routes>

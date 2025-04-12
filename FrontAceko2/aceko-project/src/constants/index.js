@@ -12,7 +12,6 @@ import { IoGitNetworkSharp } from "react-icons/io5";
 import { FaTasks } from "react-icons/fa";
 import { FaUserDoctor } from "react-icons/fa6";
 import { IoAnalytics } from "react-icons/io5";
-import {FaUserPlus } from 'react-icons/fa'
 
 import user01 from "../assets/user01.png";
 import user02 from "../assets/user02.png";
